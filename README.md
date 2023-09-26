@@ -1,14 +1,10 @@
 # Turborepo starter
 
-This is an official starter Turborepo.
+This is a modified version of the official [Turborepo starter](), customised to make use of some of my current most productive tools for hobby projects.
 
 ## Using this example
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
+TBC
 
 ## What's inside?
 
@@ -16,10 +12,12 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `backend`: an [SST](https://sst.dev/) app
+- `web`: a [Next.js](https://nextjs.org/) app
+- `ui`: a stub React component library used by the `web` app
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `jest-presets`: `jest` presets for consumption by other apps and packages
+- `tailwind-config`: `tailwindcss` configurations
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
@@ -30,6 +28,7 @@ This Turborepo has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
+- [Jest](https://jestjs.io/) for testing
 - [Prettier](https://prettier.io) for code formatting
 
 ### Build
