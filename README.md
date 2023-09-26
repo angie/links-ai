@@ -1,6 +1,6 @@
 # Turborepo starter
 
-This is a modified version of the official [Turborepo starter](), customised to make use of some of my current most productive tools for hobby projects.
+This is a modified version of the official [Turborepo starter](https://turbo.build/repo/docs/getting-started/create-new), customised to make use of some of my current most productive tools for hobby projects.
 
 ## Using this example
 
