@@ -30,5 +30,13 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ["**/__tests__/**/*", "**/**/*.{spec,test}.*"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
   ignorePatterns: ["node_modules/", "dist/"],
 };

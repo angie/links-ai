@@ -1,0 +1,10 @@
+{
+  "name": "jest-presets",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  }
+}
