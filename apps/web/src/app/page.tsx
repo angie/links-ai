@@ -16,7 +16,7 @@ export default function Page(): JSX.Element {
               anim id veniam aliqua proident excepteur commodo do ea.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Button variant="destructive">Get started</Button>
+              <Button>Get started</Button>
               <a
                 className="text-sm font-semibold leading-6"
                 href="https://www.tailwind-kit.com"
