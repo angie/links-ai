@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@backend/core": "workspace:*",
+    "logger": "workspace:^",
     "typescript": "^5.2.2"
   }
 }
