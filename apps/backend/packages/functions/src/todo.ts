@@ -13,9 +13,9 @@ export const create = ApiHandler(async (_evt) => {
 
 export const list = ApiHandler(
   async (_evt): Promise<APIGatewayProxyStructuredResultV2> => {
-    return {
+    return Promise.resolve({
       statusCode: 200,
       body: JSON.stringify(Todo.list()),
-    };
+    });
   },
 );
