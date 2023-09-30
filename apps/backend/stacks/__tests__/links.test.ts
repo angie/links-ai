@@ -13,7 +13,7 @@ test("API gateway has expected routes", async () => {
       ? `${process.cwd()}/apps/backend`
       : process.cwd(),
   });
-  const app = new App({ mode: "deploy" });
+  const app = new App({ mode: "deploy", stage: "test" });
   app.stack(links);
 
   const template = Template.fromStack(getStack(links));
