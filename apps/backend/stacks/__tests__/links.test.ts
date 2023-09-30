@@ -12,6 +12,7 @@ test("API gateway has expected routes", async () => {
     root: IS_RUNNING_FROM_MONOREPO
       ? `${process.cwd()}/apps/backend`
       : process.cwd(),
+    stage: "test",
   });
   const app = new App({ mode: "deploy", stage: "test" });
   app.stack(links);
