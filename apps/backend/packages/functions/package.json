@@ -13,6 +13,7 @@
     "vitest": "^0.34.6"
   },
   "dependencies": {
-    "@backend/core": "workspace:*"
+    "@backend/core": "workspace:*",
+    "typescript": "^5.2.2"
   }
 }

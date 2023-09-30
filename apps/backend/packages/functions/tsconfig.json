@@ -1,11 +1,11 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
+  "extends": "tsconfig/base.json",
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@backend/core/*": ["../core/src/*"]
+      "@backend/core/*": ["./node_modules/@backend/core/src/*"]
     }
   }
 }

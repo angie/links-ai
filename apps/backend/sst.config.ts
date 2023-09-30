@@ -1,8 +1,7 @@
 import type { SSTConfig } from "sst";
 import { API } from "./stacks/my-stack";
 
-// eslint-disable-next-line import/no-default-export -- required by SST
-export default {
+const config: SSTConfig = {
   config(_input) {
     return {
       name: "backend",
@@ -12,4 +11,7 @@ export default {
   stacks(app) {
     app.stack(API);
   },
-} satisfies SSTConfig;
+};
+
+// eslint-disable-next-line import/no-default-export -- required by SST
+export default config;
