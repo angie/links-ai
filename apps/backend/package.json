@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,9 +10,15 @@
     "remove": "sst remove",
     "console": "sst console",
     "lint": "eslint .",
+    "test": "sst bind vitest --root .",
+    "test:ci": "sst bind vitest run",
     "typecheck": "tsc --noEmit"
   },
+  "jest": {
+    "preset": "jest-presets/jest/node"
+  },
   "devDependencies": {
+    "@types/node": "^20.8.0",
     "aws-cdk-lib": "2.95.1",
     "constructs": "10.2.69",
     "eslint-config-custom": "workspace:^",
@@ -20,6 +26,8 @@
     "jest-presets": "workspace:^",
     "sst": "^2.26.5",
     "tsconfig": "workspace:^",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6",
+    "vitest-config": "workspace:^"
   }
 }

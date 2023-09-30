@@ -37,7 +37,11 @@ jobs:
 
       - name: 🧪 Run lint
         run: |
-          pnpm run lint
+          pnpm lint
+
+      - name: 🧬 Run test
+        run: |
+          pnpm test:ci
 
   # deploy:
   #   runs-on: ubuntu-latest

@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "dev": "next dev",
     "lint": "next lint",
-    "test": "jest --detectOpenHandles"
-  },
-  "jest": {
-    "preset": "jest-presets/jest/browser"
+    "start": "next start",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
@@ -37,6 +35,7 @@
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.4",
     "tsconfig": "workspace:*",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest-config": "workspace:^"
   }
 }

@@ -6,6 +6,8 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
+    "test": "turbo test",
+    "test:ci": "vitest run",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
@@ -17,7 +19,8 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "tsconfig": "workspace:*",
-    "turbo": "latest"
+    "turbo": "latest",
+    "vitest": "^0.34.6"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

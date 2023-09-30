@@ -3,17 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "sst bind jest",
     "typecheck": "tsc --noEmit"
-  },
-  "jest": {
-    "preset": "jest-presets/node"
   },
   "devDependencies": {
     "@types/node": "^20.7.0",
-    "jest-presets": "workspace:^",
     "sst": "^2.26.5",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest-config": "workspace:^"
   },
   "dependencies": {
     "@backend/core": "workspace:^",

@@ -15,6 +15,9 @@
       "outputs": ["coverage/**"],
       "dependsOn": []
     },
+    "test:ci": {
+      "dependsOn": []
+    },
     "typecheck": {
       "dependsOn": ["^build"]
     }

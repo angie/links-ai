@@ -1,11 +1,7 @@
 {
   "name": "logger",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
+  "description": "shared logging package",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -15,9 +11,6 @@
         "src/*"
       ]
     }
-  },
-  "jest": {
-    "preset": "jest-presets/jest/node"
   },
   "license": "MIT",
   "devDependencies": {
