@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --no-cache --continue",
+    "dev": "turbo dev --no-cache --continue --concurrency 12",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",

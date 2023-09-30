@@ -1,6 +1,6 @@
 {
   "name": "@backend/functions",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "test": "sst bind vitest",
