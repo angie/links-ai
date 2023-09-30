@@ -1,5 +1,6 @@
+import * as Todo from "@backend/core/todo";
+import type { APIGatewayProxyStructuredResultV2 } from "aws-lambda";
 import { ApiHandler } from "sst/node/api";
-import { Todo } from "@backend/core/todo";
 
 export const create = ApiHandler(async (_evt) => {
   await Todo.create();
@@ -10,9 +11,11 @@ export const create = ApiHandler(async (_evt) => {
   };
 });
 
-export const list = ApiHandler(async (_evt) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(Todo.list()),
-  };
-});
+export const list = ApiHandler(
+  async (_evt): Promise<APIGatewayProxyStructuredResultV2> => {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(Todo.list()),
+    };
+  },
+);

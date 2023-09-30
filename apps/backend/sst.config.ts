@@ -1,6 +1,7 @@
-import { SSTConfig } from "sst";
-import { API } from "./stacks/MyStack";
+import type { SSTConfig } from "sst";
+import { API } from "./stacks/my-stack";
 
+// eslint-disable-next-line import/no-default-export -- required by SST
 export default {
   config(_input) {
     return {

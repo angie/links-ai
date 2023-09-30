@@ -1,6 +1,7 @@
-import { StackContext, Api, EventBus } from "sst/constructs";
+import type { StackContext } from "sst/constructs";
+import { Api, EventBus } from "sst/constructs";
 
-export function API({ stack }: StackContext) {
+export function API({ stack }: StackContext): void {
   const bus = new EventBus(stack, "bus", {
     defaults: {
       retries: 10,
