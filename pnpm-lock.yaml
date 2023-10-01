@@ -79,9 +79,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      zod:
-        specifier: ^3.22.2
-        version: 3.22.2
     devDependencies:
       "@types/node":
         specifier: ^20.7.0
@@ -89,34 +86,6 @@ importers:
       sst:
         specifier: ^2.26.5
         version: 2.26.5
-      vitest:
-        specifier: ^0.34.5
-        version: 0.34.6
-
-  apps/backend/packages/functions:
-    dependencies:
-      "@backend/core":
-        specifier: workspace:*
-        version: link:../core
-      logger:
-        specifier: workspace:^
-        version: link:../../../../packages/logger
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
-    devDependencies:
-      "@types/aws-lambda":
-        specifier: ^8.10.122
-        version: 8.10.122
-      "@types/node":
-        specifier: ^20.8.0
-        version: 20.8.0
-      sst:
-        specifier: ^2.26.9
-        version: 2.26.9
-      vitest:
-        specifier: ^0.34.6
-        version: 0.34.6
 
   apps/backend/packages/links:
     dependencies:
@@ -6312,13 +6281,6 @@ packages:
       - "@types/node"
       - supports-color
       - typescript
-    dev: true
-
-  /@types/aws-lambda@8.10.122:
-    resolution:
-      {
-        integrity: sha512-vBkIh9AY22kVOCEKo5CJlyCgmSWvasC+SWUxL/x/vOwRobMpI/HG1xp/Ae3AqmSiZeLUbOhW0FCD3ZjqqUxmXw==,
-      }
     dev: true
 
   /@types/babel__core@7.20.2:

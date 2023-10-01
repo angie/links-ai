@@ -1,5 +1,4 @@
 import type { SSTConfig } from "sst";
-import { API } from "./stacks/my-stack";
 import { links } from "./stacks/links";
 
 const config: SSTConfig = {
@@ -10,7 +9,6 @@ const config: SSTConfig = {
     };
   },
   stacks(app) {
-    app.stack(API);
     app.stack(links);
 
     app.setDefaultFunctionProps({

@@ -2,7 +2,7 @@ import type { StackContext } from "sst/constructs";
 import { Api, EventBus } from "sst/constructs";
 
 export function links({ stack }: StackContext): void {
-  const bus = new EventBus(stack, "links-bus", {
+  const bus = new EventBus(stack, "bus", {
     defaults: {
       retries: 10,
     },

@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { event } from "@backend/core/event";
+import { event } from "@backend/core/event-builder";
 import { z } from "zod";
 
 export const Events = {
