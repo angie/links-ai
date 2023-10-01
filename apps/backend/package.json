@@ -10,10 +10,13 @@
     "remove": "sst remove",
     "console": "sst console",
     "lint": "eslint .",
-    "test": "sst bind vitest --root .",
+    "test": "sst bind vitest",
     "test:ci": "sst bind vitest run",
     "typecheck": "tsc --noEmit"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@types/node": "^20.8.0",
     "aws-cdk-lib": "2.95.1",
