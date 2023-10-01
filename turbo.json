@@ -19,7 +19,10 @@
       "dependsOn": []
     },
     "typecheck": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "force-cache-miss"]
+    },
+    "force-cache-miss": {
+      "dependsOn": ["^force-cache-miss"]
     }
   }
 }
