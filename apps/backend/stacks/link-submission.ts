@@ -14,9 +14,9 @@ export function linkSubmission({ stack }: StackContext): void {
       },
     },
     routes: {
-      "PATCH /links/{linkId}": "packages/links/src/api.archive",
-      "POST /submit": "packages/links/src/api.create",
-      "DELETE /links/{linkId}": "packages/links/src/api.remove",
+      "PATCH /links/{linkId}": "packages/links-submission/src/api.archive",
+      "POST /submit": "packages/links-submission/src/api.create",
+      "DELETE /links/{linkId}": "packages/links-submission/src/api.remove",
     },
   });
 
