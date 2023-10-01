@@ -1,4 +1,7 @@
+import { App } from "sst/constructs";
 import { initProject } from "sst/project";
+import { bus } from "../event-bus";
+import { links } from "../links";
 
 const APP_DIR = "apps/backend";
 const IS_RUNNING_FROM_MONOREPO = !process.cwd().includes(APP_DIR);
@@ -9,11 +12,15 @@ const PROJECT_ROOT = IS_RUNNING_FROM_MONOREPO
   ? `${process.cwd()}/${APP_DIR}`
   : process.cwd();
 
-export const initSstProject = async (): Promise<
-  ReturnType<typeof initProject>
-> => {
+export const initProjectWithStacks = async (): Promise<App> => {
   await initProject({
     root: PROJECT_ROOT,
     stage: "test",
   });
+
+  const app = new App({ mode: "deploy", stage: "test" });
+  app.stack(bus);
+  app.stack(links);
+
+  return app;
 };

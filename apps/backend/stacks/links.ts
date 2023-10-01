@@ -1,13 +1,9 @@
 import type { StackContext } from "sst/constructs";
-import { Api, EventBus, Table } from "sst/constructs";
+import { Api, Table, use } from "sst/constructs";
+import { bus as busStack } from "./event-bus";
 
 export function links({ stack }: StackContext): void {
-  const bus = new EventBus(stack, "bus", {
-    defaults: {
-      retries: 10,
-    },
-  });
-
+  const { bus } = use(busStack);
   const table = new Table(stack, "links-table", {
     defaults: {
       function: {
