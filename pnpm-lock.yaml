@@ -87,6 +87,31 @@ importers:
         specifier: ^2.26.5
         version: 2.26.5
 
+  apps/backend/packages/link-categorisation:
+    dependencies:
+      "@backend/core":
+        specifier: workspace:^
+        version: link:../core
+      logger:
+        specifier: workspace:^
+        version: link:../../../../packages/logger
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
+    devDependencies:
+      "@types/node":
+        specifier: ^20.7.0
+        version: 20.8.0
+      sst:
+        specifier: ^2.26.5
+        version: 2.26.9
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+      vitest-config:
+        specifier: workspace:^
+        version: link:../../../../packages/vitest-config
+
   apps/backend/packages/link-submission:
     dependencies:
       "@backend/core":
