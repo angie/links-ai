@@ -20,10 +20,6 @@ export function linkSubmission({ stack }: StackContext): void {
     },
   });
 
-  bus.subscribe("link.created", {
-    handler: "packages/links/src/events/created.handler",
-  });
-
   stack.addOutputs({
     ApiEndpoint: api.url,
     TableName: table.tableName,
