@@ -18,8 +18,13 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  lint:
+  build:
+    name: 🏗️ Build and test
+    timeout-minutes: 10
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
