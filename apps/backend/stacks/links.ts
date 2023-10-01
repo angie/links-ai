@@ -16,13 +16,13 @@ export function links({ stack }: StackContext): void {
     },
     routes: {
       "GET /": "packages/links/src/lambda.handler",
-      "GET /links": "packages/links/src/todo.list",
-      "POST /links": "packages/links/src/todo.create",
+      "GET /links": "packages/links/src/api.list",
+      "POST /links": "packages/links/src/api.create",
     },
   });
 
   bus.subscribe("link.created", {
-    handler: "packages/links/src/events/todo-created.handler",
+    handler: "packages/links/src/events/created.handler",
   });
 
   stack.addOutputs({

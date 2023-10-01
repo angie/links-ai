@@ -3,7 +3,7 @@ import { event } from "@backend/core/event";
 import { z } from "zod";
 
 export const Events = {
-  Created: event("todo.created", {
+  Created: event("link.created", {
     id: z.string(),
   }),
 };
