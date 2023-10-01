@@ -1,27 +1,11 @@
 import type { StackContext } from "sst/constructs";
-import { Api, Table, use } from "sst/constructs";
+import { Api, use } from "sst/constructs";
 import { bus as busStack } from "./event-bus";
+import { table as tableStack } from "./table";
 
 export function links({ stack }: StackContext): void {
   const { bus } = use(busStack);
-  const table = new Table(stack, "links-table", {
-    defaults: {
-      function: {
-        bind: [bus],
-      },
-    },
-    fields: {
-      id: "string",
-      url: "string",
-      summary: "string",
-      timestamp: "string",
-      archived: "string",
-      deleted: "string",
-    },
-    primaryIndex: {
-      partitionKey: "id",
-    },
-  });
+  const { table } = use(tableStack);
 
   const api = new Api(stack, "links-api", {
     defaults: {

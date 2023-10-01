@@ -2,6 +2,7 @@ import { Match, Template } from "aws-cdk-lib/assertions";
 import { getStack } from "sst/constructs";
 import { links } from "../links";
 import { bus } from "../event-bus";
+import { table } from "../table";
 import { initProjectWithStacks } from "./utils";
 
 beforeAll(async () => {
@@ -40,7 +41,7 @@ test("bus has subscriber for `link.created` event", () => {
 });
 
 test("dynamo table is created", () => {
-  const template = Template.fromStack(getStack(links));
+  const template = Template.fromStack(getStack(table));
 
   template.hasResourceProperties(
     "AWS::DynamoDB::Table",
