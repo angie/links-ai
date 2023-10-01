@@ -29,7 +29,6 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.13",
     "eslint-config-custom": "workspace:*",
-    "jest-presets": "workspace:^",
     "next-themes": "^0.2.1",
     "postcss": "^8.4.20",
     "tailwind-config": "workspace:*",

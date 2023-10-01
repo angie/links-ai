@@ -14,16 +14,12 @@
     "test:ci": "sst bind vitest run",
     "typecheck": "tsc --noEmit"
   },
-  "jest": {
-    "preset": "jest-presets/jest/node"
-  },
   "devDependencies": {
     "@types/node": "^20.8.0",
     "aws-cdk-lib": "2.95.1",
     "constructs": "10.2.69",
     "eslint-config-custom": "workspace:^",
     "eslint-import-resolver-alias": "^1.1.2",
-    "jest-presets": "workspace:^",
     "sst": "^2.26.5",
     "tsconfig": "workspace:^",
     "typescript": "^5.2.2",
