@@ -20,7 +20,7 @@ export function linkCategorisation({ stack }: StackContext): void {
   });
 
   bus.subscribe("link.created", {
-    handler: "packages/links/src/events/created.handler",
+    handler: "packages/link-categorisation/src/events/created.handler",
   });
 
   stack.addOutputs({
