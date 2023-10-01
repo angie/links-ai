@@ -12,6 +12,10 @@ const config: SSTConfig = {
   stacks(app) {
     app.stack(API);
     app.stack(links);
+
+    app.setDefaultFunctionProps({
+      runtime: "nodejs18.x",
+    });
   },
 };
 
