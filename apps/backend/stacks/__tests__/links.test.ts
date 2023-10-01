@@ -1,19 +1,11 @@
-import { Template, Match } from "aws-cdk-lib/assertions";
-import { initProject } from "sst/project";
+import { Match, Template } from "aws-cdk-lib/assertions";
 import { App, getStack } from "sst/constructs";
 import { links } from "../links";
-
-const IS_RUNNING_FROM_MONOREPO = !process.cwd().includes("apps/backend");
+import { initSstProject } from "./utils";
 
 beforeAll(async () => {
-  // set up project and stack
-  // TODO: find out how to set the root path relative to the package, not monorepo root
-  await initProject({
-    root: IS_RUNNING_FROM_MONOREPO
-      ? `${process.cwd()}/apps/backend`
-      : process.cwd(),
-    stage: "test",
-  });
+  // init sst project context
+  await initSstProject();
 });
 
 test("API gateway has expected routes", () => {
