@@ -29,16 +29,23 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: "pnpm"
 
       - name: ⚙️ Install dependencies
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: true
+        run: |
+          pnpm install
+
+      - name: 🏗️ Run build
+        run: |
+          pnpm build
 
       - name: 🧪 Run lint
         run: |
