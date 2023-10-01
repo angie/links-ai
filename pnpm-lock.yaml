@@ -70,6 +70,9 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
     devDependencies:
       "@types/node":
         specifier: ^20.7.0
