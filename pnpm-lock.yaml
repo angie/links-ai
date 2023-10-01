@@ -87,7 +87,7 @@ importers:
         specifier: ^2.26.5
         version: 2.26.5
 
-  apps/backend/packages/links:
+  apps/backend/packages/link-submission:
     dependencies:
       "@backend/core":
         specifier: workspace:^

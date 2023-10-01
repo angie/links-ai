@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "paths": {
       "@backend/core/*": ["./node_modules/@backend/core/src/*"],
-      "@backend/links/*": ["./src/*"]
+      "@backend/link-submission/*": ["./src/*"]
     }
   }
 }
