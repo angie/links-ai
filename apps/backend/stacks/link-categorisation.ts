@@ -14,7 +14,8 @@ export function linkCategorisation({ stack }: StackContext): void {
       },
     },
     routes: {
-      "GET /links/category/{category}": "packages/links/src/api.getByCategory",
+      "GET /links/category/{category}":
+        "packages/link-categorisation/src/api.getByCategory",
     },
   });
 
