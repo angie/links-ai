@@ -4,7 +4,8 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "cache": false
     },
     "lint": {},
     "dev": {
@@ -19,8 +20,7 @@
       "dependsOn": []
     },
     "typecheck": {
-      "dependsOn": ["^build"],
-      "cache": false
+      "dependsOn": ["^build"]
     }
   }
 }
