@@ -1,5 +1,5 @@
 import type { StackContext } from "sst/constructs";
-import { Api, EventBus } from "sst/constructs";
+import { Api, EventBus, Table } from "sst/constructs";
 
 export function links({ stack }: StackContext): void {
   const bus = new EventBus(stack, "bus", {
@@ -8,10 +8,29 @@ export function links({ stack }: StackContext): void {
     },
   });
 
-  const api = new Api(stack, "links-api", {
+  const table = new Table(stack, "links-table", {
     defaults: {
       function: {
         bind: [bus],
+      },
+    },
+    fields: {
+      id: "string",
+      url: "string",
+      summary: "string",
+      timestamp: "string",
+      archived: "string",
+      deleted: "string",
+    },
+    primaryIndex: {
+      partitionKey: "id",
+    },
+  });
+
+  const api = new Api(stack, "links-api", {
+    defaults: {
+      function: {
+        bind: [bus, table],
       },
     },
     routes: {
@@ -27,5 +46,6 @@ export function links({ stack }: StackContext): void {
 
   stack.addOutputs({
     ApiEndpoint: api.url,
+    TableName: table.tableName,
   });
 }

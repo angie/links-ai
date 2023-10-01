@@ -48,3 +48,26 @@ test("bus has subscriber for `link.created` event", () => {
     }),
   );
 });
+
+test("dynamo table is created", () => {
+  const template = Template.fromStack(getStack(links));
+
+  template.hasResourceProperties(
+    "AWS::DynamoDB::Table",
+    Match.objectLike({
+      KeySchema: [
+        {
+          AttributeName: "id",
+          KeyType: "HASH",
+        },
+      ],
+      AttributeDefinitions: [
+        {
+          AttributeName: "id",
+          AttributeType: "S",
+        },
+      ],
+      BillingMode: "PAY_PER_REQUEST",
+    }),
+  );
+});
