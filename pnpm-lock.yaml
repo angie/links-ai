@@ -114,9 +114,6 @@ importers:
       logger:
         specifier: workspace:^
         version: link:../../../../packages/logger
-      sst:
-        specifier: ^2.26.5
-        version: 2.26.9
       zod:
         specifier: ^3.22.2
         version: 3.22.2
