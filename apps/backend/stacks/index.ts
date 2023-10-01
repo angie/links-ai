@@ -1,5 +1,6 @@
 import type { App } from "sst/constructs";
 import { bus } from "./event-bus";
+import { linkCategorisation } from "./link-categorisation";
 import { linkSubmission } from "./link-submission";
 import { table } from "./table";
 
@@ -10,5 +11,6 @@ import { table } from "./table";
 export function addAppStacks(app: App): void {
   app.stack(bus);
   app.stack(table);
+  app.stack(linkCategorisation);
   app.stack(linkSubmission);
 }

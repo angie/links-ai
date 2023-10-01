@@ -1,0 +1,19 @@
+{
+  "name": "@backend/link-categorisation",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.0",
+    "sst": "^2.26.5",
+    "typescript": "^5.2.2",
+    "vitest-config": "workspace:^"
+  },
+  "dependencies": {
+    "@backend/core": "workspace:^",
+    "logger": "workspace:^",
+    "zod": "^3.22.2"
+  }
+}

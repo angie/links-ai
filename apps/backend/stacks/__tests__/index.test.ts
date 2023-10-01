@@ -1,7 +1,8 @@
 import { Match, Template } from "aws-cdk-lib/assertions";
 import { getStack } from "sst/constructs";
-import { linkSubmission } from "../link-submission";
 import { bus } from "../event-bus";
+import { linkCategorisation } from "../link-categorisation";
+import { linkSubmission } from "../link-submission";
 import { table } from "../table";
 import { initProjectWithStacks } from "./utils";
 
@@ -10,7 +11,7 @@ beforeAll(async () => {
   await initProjectWithStacks();
 });
 
-test("API gateway has expected routes", () => {
+test("link submission API gateway has expected routes", () => {
   const template = Template.fromStack(getStack(linkSubmission));
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
@@ -19,6 +20,14 @@ test("API gateway has expected routes", () => {
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
     RouteKey: "DELETE /links/{linkId}",
+  });
+});
+
+test("link categorisation API gateway has expected route", () => {
+  const template = Template.fromStack(getStack(linkCategorisation));
+
+  template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
+    RouteKey: "GET /links/category/{category}",
   });
 });
 
