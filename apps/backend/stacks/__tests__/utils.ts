@@ -1,8 +1,6 @@
 import { App } from "sst/constructs";
 import { initProject } from "sst/project";
-import { bus } from "../event-bus";
-import { links } from "../links";
-import { table } from "../table";
+import { addAppStacks } from "..";
 
 const APP_DIR = "apps/backend";
 const IS_RUNNING_FROM_MONOREPO = !process.cwd().includes(APP_DIR);
@@ -20,9 +18,7 @@ export const initProjectWithStacks = async (): Promise<App> => {
   });
 
   const app = new App({ mode: "deploy", stage: "test" });
-  app.stack(bus);
-  app.stack(table);
-  app.stack(links);
+  addAppStacks(app);
 
   return app;
 };

@@ -1,6 +1,6 @@
 import { Match, Template } from "aws-cdk-lib/assertions";
 import { getStack } from "sst/constructs";
-import { links } from "../links";
+import { linkSubmission } from "../link-submission";
 import { bus } from "../event-bus";
 import { table } from "../table";
 import { initProjectWithStacks } from "./utils";
@@ -11,18 +11,14 @@ beforeAll(async () => {
 });
 
 test("API gateway has expected routes", () => {
-  const template = Template.fromStack(getStack(links));
+  const template = Template.fromStack(getStack(linkSubmission));
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
-    RouteKey: "GET /",
+    RouteKey: "POST /submit",
   });
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
-    RouteKey: "GET /links",
-  });
-
-  template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
-    RouteKey: "POST /links",
+    RouteKey: "DELETE /links/{linkId}",
   });
 });
 
