@@ -1,8 +1,5 @@
 import type { SSTConfig } from "sst";
-import { bus } from "./stacks/event-bus";
-import { linkCategorisation } from "./stacks/link-categorisation";
-import { linkSubmission } from "./stacks/link-submission";
-import { table } from "./stacks/table";
+import { addAppStacks } from "./stacks";
 
 const config: SSTConfig = {
   config(_input) {
@@ -12,10 +9,7 @@ const config: SSTConfig = {
     };
   },
   stacks(app) {
-    app.stack(bus);
-    app.stack(table);
-    app.stack(linkCategorisation);
-    app.stack(linkSubmission);
+    addAppStacks(app);
 
     app.setDefaultFunctionProps({
       runtime: "nodejs18.x",

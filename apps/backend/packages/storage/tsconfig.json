@@ -1,0 +1,14 @@
+{
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "declarationMap": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@backend/core/*": ["../core/src/*"],
+      "@backend/link-storage/*": ["./src/*"]
+    }
+  }
+}

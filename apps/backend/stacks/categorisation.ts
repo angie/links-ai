@@ -7,7 +7,7 @@ export function linkCategorisation({ stack }: StackContext): void {
   const { bus } = use(busStack);
   const { table } = use(tableStack);
 
-  const api = new Api(stack, "link-categorisation-api", {
+  const api = new Api(stack, "categorisation-api", {
     defaults: {
       function: {
         bind: [bus, table],
@@ -15,12 +15,12 @@ export function linkCategorisation({ stack }: StackContext): void {
     },
     routes: {
       "GET /links/category/{category}":
-        "packages/link-categorisation/src/api.getByCategory",
+        "packages/categorisation/src/api.getByCategory",
     },
   });
 
   bus.subscribe("link.created", {
-    handler: "packages/link-categorisation/src/events/created.handler",
+    handler: "packages/categorisation/src/events/created.handler",
   });
 
   stack.addOutputs({

@@ -1,8 +1,8 @@
 import { Match, Template } from "aws-cdk-lib/assertions";
 import { getStack } from "sst/constructs";
 import { bus } from "../event-bus";
-import { linkCategorisation } from "../link-categorisation";
-import { linkSubmission } from "../link-submission";
+import { linkCategorisation } from "../categorisation";
+import { linkIngest } from "../ingest";
 import { table } from "../table";
 import { initProjectWithStacks } from "./utils";
 
@@ -12,7 +12,7 @@ beforeAll(async () => {
 });
 
 test("link submission API gateway has expected routes", () => {
-  const template = Template.fromStack(getStack(linkSubmission));
+  const template = Template.fromStack(getStack(linkIngest));
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
     RouteKey: "POST /submit",
