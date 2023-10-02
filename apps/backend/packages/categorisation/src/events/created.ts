@@ -4,6 +4,6 @@ import { EventHandler } from "sst/node/event-bus";
 
 export const handler = EventHandler(Events.Submitted, async (evt) => {
   const { id, url } = evt.properties;
-  logger.info("Link created", { id, url });
+  logger.info("Link categorised", { id, url });
   await Promise.resolve("hello");
 });

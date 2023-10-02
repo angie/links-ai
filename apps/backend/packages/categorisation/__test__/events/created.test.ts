@@ -1,6 +1,6 @@
 import { fromPartial } from "@total-typescript/shoehorn";
 import { logger } from "logger";
-import { handler } from "../../src/events/submitted";
+import { handler } from "../../src/events/created";
 
 vi.mock("logger");
 
@@ -18,7 +18,7 @@ test("should call log", async () => {
     }),
   );
 
-  expect(logger.info).toHaveBeenCalledWith("Link created", {
+  expect(logger.info).toHaveBeenCalledWith("Link categorised", {
     id: "123",
     url: "https://example.com",
   });
