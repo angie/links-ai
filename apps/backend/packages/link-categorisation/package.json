@@ -6,7 +6,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^20.7.0",
+    "@types/node": "^20.8.0",
     "sst": "^2.26.5",
     "typescript": "^5.2.2",
     "vitest-config": "workspace:^"
