@@ -6,8 +6,9 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "test": "turbo test",
-    "test:ci": "vitest run",
+    "test": "turbo test --filter=!./apps/backend/**",
+    "test:backend": "turbo test --filter=backend",
+    "test:ci": "CI=true pnpm test && CI=true pnpm test:backend",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {

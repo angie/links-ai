@@ -1,5 +1,6 @@
+import path from "node:path";
 import shared from "vitest-config/node";
-import { configDefaults, defineProject, mergeConfig } from "vitest/config";
+import { defineProject, mergeConfig } from "vitest/config";
 
 // eslint-disable-next-line import/no-default-export -- required for vitest
 export default mergeConfig(
@@ -7,7 +8,12 @@ export default mergeConfig(
   defineProject({
     test: {
       environment: "node",
-      exclude: [...configDefaults.exclude, "packages/**"],
+      threads: false,
+    },
+    resolve: {
+      alias: {
+        "@backend/core": path.resolve(__dirname, "./packages/core/src"),
+      },
     },
   }),
 );
