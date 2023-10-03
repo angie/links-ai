@@ -24,6 +24,6 @@ export function linkCategorisation({ stack }: StackContext): void {
   });
 
   stack.addOutputs({
-    ApiEndpoint: api.url,
+    CategorisationApiEndpoint: api.url,
   });
 }

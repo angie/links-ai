@@ -12,14 +12,16 @@ export function table({ stack }: StackContext): { table: Table } {
     },
     fields: {
       id: "string",
+      userId: "string",
       url: "string",
       summary: "string",
       timestamp: "string",
-      archived: "string",
-      deleted: "string",
+      isArchived: "string",
+      isDeleted: "string",
     },
     primaryIndex: {
-      partitionKey: "id",
+      partitionKey: "userId",
+      sortKey: "url",
     },
   });
 

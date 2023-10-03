@@ -21,7 +21,6 @@ export function linkIngest({ stack }: StackContext): void {
   });
 
   stack.addOutputs({
-    ApiEndpoint: api.url,
-    TableName: table.tableName,
+    IngestApiEndpoint: api.url,
   });
 }

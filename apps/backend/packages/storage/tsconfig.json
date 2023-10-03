@@ -7,8 +7,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@backend/core/*": ["../core/src/*"],
-      "@backend/link-storage/*": ["./src/*"]
+      "@backend/core/*": ["../core/src/*"]
     }
   }
 }
