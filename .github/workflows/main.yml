@@ -22,9 +22,9 @@ jobs:
     name: 🏗️ Build and test
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+    # env:
+    #   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+    #   TURBO_TEAM: ${{ vars.TURBO_TEAM }}
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
