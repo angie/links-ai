@@ -1,5 +1,7 @@
 # Turborepo starter
 
+[![Seed Status](https://api.seed.run/buzzing/links-ai/stages/dev/build_badge)](https://console.seed.run/buzzing/links-ai) [![Seed Status](https://api.seed.run/buzzing/links-ai/stages/prod/build_badge)](https://console.seed.run/buzzing/links-ai)
+
 This is a modified version of the official [Turborepo starter](https://turbo.build/repo/docs/getting-started/create-new), customised to make use of some of my current most productive tools for hobby projects.
 
 ## Using this example
