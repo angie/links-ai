@@ -18,6 +18,7 @@ export const handler = EventHandler(Events.Submitted, async (evt) => {
       url,
     });
   } catch (error) {
+    logger.error(error);
     logger.error("Failed to store link", { id, url, error });
   }
 });

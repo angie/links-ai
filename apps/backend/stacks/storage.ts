@@ -8,6 +8,6 @@ export function linkStorage(): void {
 
   bus.subscribe("link.submitted", {
     handler: "packages/storage/src/events/submitted.handler",
-    bind: [table],
+    bind: [bus, table],
   });
 }

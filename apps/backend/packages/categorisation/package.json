@@ -9,7 +9,9 @@
   "devDependencies": {
     "@total-typescript/shoehorn": "^0.1.1",
     "@types/aws-lambda": "^8.10.122",
+    "@types/html-to-text": "^9.0.2",
     "@types/node": "^20.7.0",
+    "playwright": "^1.38.1",
     "sst": "^2.26.5",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6",
@@ -17,7 +19,14 @@
   },
   "dependencies": {
     "@backend/core": "workspace:^",
+    "axios": "^1.5.1",
+    "chrome-aws-lambda": "^10.1.0",
+    "html-to-text": "^9.0.5",
     "logger": "workspace:^",
+    "openai": "^4.11.1",
+    "playwright-aws-lambda": "^0.10.0",
+    "playwright-core": "^1.38.1",
+    "tiny-invariant": "^1.3.1",
     "zod": "^3.22.2"
   }
 }
