@@ -9,8 +9,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# env:
-#   AWS_REGION: ${{ vars.AWS_REGION }}
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
 
 # Permission can be added at job level or workflow level
 permissions:
@@ -59,32 +59,35 @@ jobs:
         run: |
           pnpm test:ci
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: [lint]
-  #   steps:
-  #     - name: ⬇️ Checkout repo
-  #       uses: actions/checkout@v3
+  secrets:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
 
-  #     - name: configure aws credentials
-  #       uses: aws-actions/configure-aws-credentials@v4
-  #       with:
-  #         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-  #         role-session-name: github-actions
-  #         aws-region: ${{ env.AWS_REGION }}
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: github-actions
+          aws-region: ${{ env.AWS_REGION }}
 
-  #     - name: ⚙️ Install dependencies
-  #       uses: pnpm/action-setup@v2
-  #       with:
-  #         version: 8
-  #         run_install: true
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-  #     - name: λ sst diff
-  #       working-directory: apps/backend
-  #       run: |
-  #         pnpm exec sst diff --stage production
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
 
-  #     - name: λ sst deploy
-  #       working-directory: apps/backend
-  #       run: |
-  #         pnpm exec sst deploy --stage production
+      - name: ⚙️ Install dependencies
+        run: |
+          pnpm install
+
+      - name: 🤐 Set SST secrets
+        working-directory: apps/backend
+        run: |
+          npx sst secrets set --stage dev OPENAI_API_KEY ${{ secrets.OPENAI_API_KEY }}
