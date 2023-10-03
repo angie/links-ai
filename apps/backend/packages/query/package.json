@@ -1,0 +1,23 @@
+{
+  "name": "@backend/link-query",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "sst bind vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@total-typescript/shoehorn": "^0.1.1",
+    "@types/aws-lambda": "^8.10.122",
+    "@types/node": "^20.7.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6",
+    "vitest-config": "workspace:^"
+  },
+  "dependencies": {
+    "@backend/core": "workspace:^",
+    "logger": "workspace:^",
+    "sst": "^2.26.5",
+    "zod": "^3.22.2"
+  }
+}

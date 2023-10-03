@@ -1,8 +1,8 @@
 import { Match, Template } from "aws-cdk-lib/assertions";
 import { getStack } from "sst/constructs";
 import { bus } from "../event-bus";
-import { linkCategorisation } from "../categorisation";
 import { linkIngest } from "../ingest";
+import { linkQuery } from "../query";
 import { table } from "../table";
 import { initProjectWithStacks } from "./utils";
 
@@ -11,7 +11,7 @@ beforeAll(async () => {
   await initProjectWithStacks();
 });
 
-test("link submission API gateway has expected routes", () => {
+test("link ingest API gateway has expected routes", () => {
   const template = Template.fromStack(getStack(linkIngest));
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
@@ -23,22 +23,40 @@ test("link submission API gateway has expected routes", () => {
   });
 });
 
-test("link categorisation API gateway has expected route", () => {
-  const template = Template.fromStack(getStack(linkCategorisation));
+test("link query API gateway has expected routes", () => {
+  const template = Template.fromStack(getStack(linkQuery));
+
+  template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
+    RouteKey: "GET /links",
+  });
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
     RouteKey: "GET /links/category/{category}",
   });
 });
 
-test("bus has subscriber for `link.created` event", () => {
+test("bus has subscriber for `link.submitted` event", () => {
   const template = Template.fromStack(getStack(bus));
 
   template.hasResourceProperties(
     "AWS::Events::Rule",
     Match.objectLike({
       EventPattern: {
-        "detail-type": ["link.created"],
+        "detail-type": ["link.submitted"],
+      },
+      State: "ENABLED",
+    }),
+  );
+});
+
+test("bus has subscriber for `link.stored` event", () => {
+  const template = Template.fromStack(getStack(bus));
+
+  template.hasResourceProperties(
+    "AWS::Events::Rule",
+    Match.objectLike({
+      EventPattern: {
+        "detail-type": ["link.stored"],
       },
       State: "ENABLED",
     }),
@@ -53,17 +71,40 @@ test("dynamo table is created", () => {
     Match.objectLike({
       KeySchema: [
         {
-          AttributeName: "id",
+          AttributeName: "userId",
           KeyType: "HASH",
+        },
+        {
+          AttributeName: "url",
+          KeyType: "RANGE",
         },
       ],
       AttributeDefinitions: [
         {
-          AttributeName: "id",
+          AttributeName: "userId",
+          AttributeType: "S",
+        },
+        {
+          AttributeName: "url",
           AttributeType: "S",
         },
       ],
       BillingMode: "PAY_PER_REQUEST",
+    }),
+  );
+});
+
+test("passes OpenAI api key to event bus subscriber", () => {
+  const template = Template.fromStack(getStack(bus));
+
+  template.hasResourceProperties(
+    "AWS::Lambda::Function",
+    Match.objectLike({
+      Environment: Match.objectLike({
+        Variables: Match.objectLike({
+          SST_Secret_value_OPENAI_API_KEY: "__FETCH_FROM_SSM__",
+        }),
+      }),
     }),
   );
 });

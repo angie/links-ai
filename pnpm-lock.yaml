@@ -155,6 +155,40 @@ importers:
         specifier: workspace:^
         version: link:../../../../packages/vitest-config
 
+  apps/backend/packages/query:
+    dependencies:
+      "@backend/core":
+        specifier: workspace:^
+        version: link:../core
+      logger:
+        specifier: workspace:^
+        version: link:../../../../packages/logger
+      sst:
+        specifier: ^2.26.5
+        version: 2.26.9
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
+    devDependencies:
+      "@total-typescript/shoehorn":
+        specifier: ^0.1.1
+        version: 0.1.1
+      "@types/aws-lambda":
+        specifier: ^8.10.122
+        version: 8.10.122
+      "@types/node":
+        specifier: ^20.7.0
+        version: 20.8.0
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+      vitest:
+        specifier: ^0.34.6
+        version: 0.34.6(jsdom@22.1.0)
+      vitest-config:
+        specifier: workspace:^
+        version: link:../../../../packages/vitest-config
+
   apps/backend/packages/storage:
     dependencies:
       "@aws-sdk/client-dynamodb":
@@ -199,7 +233,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6
+        version: 0.34.6(jsdom@22.1.0)
       vitest-config:
         specifier: workspace:^
         version: link:../../../../packages/vitest-config
@@ -2999,7 +3033,7 @@ packages:
       }
     engines: { node: ">=6.9.0" }
     dependencies:
-      "@babel/types": 7.22.11
+      "@babel/types": 7.23.0
 
   /@babel/helper-module-imports@7.22.15:
     resolution:
@@ -15630,74 +15664,6 @@ packages:
       rollup: 3.29.4
     optionalDependencies:
       fsevents: 2.3.3
-
-  /vitest@0.34.6:
-    resolution:
-      {
-        integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==,
-      }
-    engines: { node: ">=v14.18.0" }
-    hasBin: true
-    peerDependencies:
-      "@edge-runtime/vm": "*"
-      "@vitest/browser": "*"
-      "@vitest/ui": "*"
-      happy-dom: "*"
-      jsdom: "*"
-      playwright: "*"
-      safaridriver: "*"
-      webdriverio: "*"
-    peerDependenciesMeta:
-      "@edge-runtime/vm":
-        optional: true
-      "@vitest/browser":
-        optional: true
-      "@vitest/ui":
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-      playwright:
-        optional: true
-      safaridriver:
-        optional: true
-      webdriverio:
-        optional: true
-    dependencies:
-      "@types/chai": 4.3.6
-      "@types/chai-subset": 1.3.3
-      "@types/node": 20.8.0
-      "@vitest/expect": 0.34.6
-      "@vitest/runner": 0.34.6
-      "@vitest/snapshot": 0.34.6
-      "@vitest/spy": 0.34.6
-      "@vitest/utils": 0.34.6
-      acorn: 8.10.0
-      acorn-walk: 8.2.0
-      cac: 6.7.14
-      chai: 4.3.10
-      debug: 4.3.4
-      local-pkg: 0.4.3
-      magic-string: 0.30.4
-      pathe: 1.1.1
-      picocolors: 1.0.0
-      std-env: 3.4.3
-      strip-literal: 1.3.0
-      tinybench: 2.5.1
-      tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.8.0)
-      vite-node: 0.34.6(@types/node@20.8.0)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-    dev: true
 
   /vitest@0.34.6(jsdom@22.1.0):
     resolution:
