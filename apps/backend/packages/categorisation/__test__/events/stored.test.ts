@@ -1,13 +1,31 @@
+import { EventBridgeClient } from "@aws-sdk/client-eventbridge";
+import { Events } from "@backend/core/events";
 import { fromPartial } from "@total-typescript/shoehorn";
+import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
 import * as openAIUtils from "../../src/events/openai-utils";
 import * as scrapers from "../../src/events/scrapers";
 import { handler } from "../../src/events/stored";
 import { responses } from "../fixtures/openai-responses";
 
+vi.mock("@backend/core/events", () => ({
+  Events: {
+    Categorised: {
+      publish: vi.fn(),
+    },
+  },
+}));
+
 vi.mock("logger");
 
-test("should call log", async () => {
+const eventBridgeClientMock = mockClient(EventBridgeClient);
+
+beforeEach(() => {
+  eventBridgeClientMock.reset();
+  eventBridgeClientMock.onAnyCommand().resolves({});
+});
+
+test("should analyse link and emit event to store", async () => {
   vi.spyOn(openAIUtils, "getOpenAIClient").mockReturnValue(
     fromPartial({
       chat: {
@@ -46,11 +64,20 @@ test("should call log", async () => {
     responses[2].choices[0].message.content || "",
   );
 
-  expect(logger.info).toHaveBeenCalledWith("Categorised link", {
+  const categorisedLinkEventBody = {
     categories: ["Sports"],
     id: "123",
     summary: parsedContent.summary,
     title: "Really funny what happened to Liverpool",
     url: "https://example.com",
-  });
+  };
+
+  expect(logger.info).toHaveBeenCalledWith(
+    "Categorised link",
+    categorisedLinkEventBody,
+  );
+
+  expect(vi.mocked(Events.Categorised.publish)).toHaveBeenCalledWith(
+    categorisedLinkEventBody,
+  );
 });

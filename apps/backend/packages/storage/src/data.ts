@@ -1,6 +1,6 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import type { EntityConfiguration } from "electrodb";
 import { Entity } from "electrodb";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { Table } from "sst/node/table";
 
 const client = new DynamoDBClient({});
@@ -20,16 +20,27 @@ const links = new Entity(
     attributes: {
       id: {
         type: "string",
-        required: true,
       },
       userId: {
         type: "string",
         required: true,
+        default: "1",
       },
       url: {
         type: "string",
         required: true,
-        unique: true,
+      },
+      categories: {
+        type: "list",
+        items: {
+          type: "string",
+        },
+      },
+      summary: {
+        type: "string",
+      },
+      title: {
+        type: "string",
       },
       timestamp: {
         type: "string",
@@ -45,14 +56,25 @@ const links = new Entity(
       },
     },
     indexes: {
-      main: {
+      byId: {
         pk: {
           field: "pk",
-          composite: ["userId", "url"],
+          composite: ["id"],
         },
         sk: {
           field: "sk",
+          composite: [],
+        },
+      },
+      byUrl: {
+        index: "gsi1",
+        pk: {
+          field: "gsi1pk",
           composite: ["url"],
+        },
+        sk: {
+          field: "gsi1sk",
+          composite: [],
         },
       },
     },
@@ -61,7 +83,31 @@ const links = new Entity(
 );
 
 export async function createLink({ id, url }: { id: string; url: string }) {
-  const link = await links.put({ id, userId: "1", url }).go();
+  const link = await links.create({ id, url }).go();
+
+  return link;
+}
+
+export async function updateLink({
+  id,
+  categories,
+  summary,
+  title,
+}: {
+  id: string;
+  categories: string[];
+  summary: string;
+  title: string;
+  url: string;
+}) {
+  const link = await links
+    .patch({ id })
+    .set({
+      categories,
+      summary,
+      title,
+    })
+    .go();
 
   return link;
 }

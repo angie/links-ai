@@ -10,4 +10,9 @@ export function linkStorage(): void {
     handler: "packages/storage/src/events/submitted.handler",
     bind: [bus, table],
   });
+
+  bus.subscribe("link.categorised", {
+    handler: "packages/storage/src/events/categorised.handler",
+    bind: [bus, table],
+  });
 }

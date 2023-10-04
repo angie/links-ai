@@ -11,17 +11,28 @@ export function table({ stack }: StackContext): { table: Table } {
       },
     },
     fields: {
-      id: "string",
-      userId: "string",
-      url: "string",
-      summary: "string",
-      timestamp: "string",
-      isArchived: "string",
-      isDeleted: "string",
+      pk: "string",
+      sk: "string",
+      gsi1pk: "string",
+      gsi1sk: "string",
+      gsi2pk: "string",
+      gsi2sk: "string",
     },
     primaryIndex: {
-      partitionKey: "userId",
-      sortKey: "url",
+      partitionKey: "pk",
+      sortKey: "sk",
+    },
+    globalIndexes: {
+      // by url
+      gsi1: {
+        partitionKey: "gsi1pk",
+        sortKey: "gsi1sk",
+      },
+      // by category
+      gsi2: {
+        partitionKey: "gsi2pk",
+        sortKey: "gsi2sk",
+      },
     },
   });
 

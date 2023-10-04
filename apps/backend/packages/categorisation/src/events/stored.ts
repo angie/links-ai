@@ -21,7 +21,13 @@ export const handler = EventHandler(Events.Stored, async (evt) => {
 
   const { summary, categories } = parseCompletion(completion);
 
-  logger.info("Categorised link", { id, url, summary, categories, title });
+  logger.info("Categorised link", { id, url });
 
-  await Promise.resolve("hello");
+  await Events.Categorised.publish({
+    categories,
+    id,
+    summary,
+    title,
+    url,
+  });
 });

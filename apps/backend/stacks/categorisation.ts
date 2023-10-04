@@ -11,6 +11,6 @@ export function linkCategorisation({ stack }: StackContext): void {
 
   bus.subscribe("link.stored", {
     handler: "packages/categorisation/src/events/stored.handler",
-    bind: [table, OPENAI_API_KEY],
+    bind: [bus, table, OPENAI_API_KEY],
   });
 }
