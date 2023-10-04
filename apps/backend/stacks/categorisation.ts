@@ -26,7 +26,7 @@ export function linkCategorisation({ app, stack }: StackContext): void {
     timeout: 30,
     layers: [layer],
     nodejs: {
-      install: ["chrome-aws-lambda"],
+      install: ["@sparticuz/chromium"],
     },
     environment: {
       IS_LOCAL: app.local.toString(),
