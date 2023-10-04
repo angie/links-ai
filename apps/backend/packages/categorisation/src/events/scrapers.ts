@@ -1,4 +1,4 @@
-import chromium from "chrome-aws-lambda";
+import chromium from "@sparticuz/chromium";
 import { convert } from "html-to-text";
 import { logger } from "logger";
 import { chromium as localPlaywrightChromium } from "playwright";
@@ -41,8 +41,8 @@ async function getUrlContentsWithDeployedLambdaPlaywright(
 ): Promise<ScrapedContent> {
   const browser = await playwright.chromium.launch({
     args: chromium.args,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+    executablePath: await chromium.executablePath(),
+    headless: true,
   });
   const result = await fetchContentAndTitle(browser, url);
   await browser.close();

@@ -60,7 +60,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6
+        version: 0.34.6(jsdom@22.1.0)
       vitest-config:
         specifier: workspace:^
         version: link:../../packages/vitest-config
@@ -70,6 +70,9 @@ importers:
       "@backend/core":
         specifier: workspace:^
         version: link:../core
+      "@sparticuz/chromium":
+        specifier: ^117.0.0
+        version: 117.0.0
       axios:
         specifier: ^1.5.1
         version: 1.5.1
@@ -6035,6 +6038,19 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /@sparticuz/chromium@117.0.0:
+    resolution:
+      {
+        integrity: sha512-MXvxLgGt7e1bjOu6AwpemRnhrF+wxLxsHpkiOuJOLsfHAtT0VNlsnhAULQZ7hNXGhr37cTM2sCifUHwgrVH+sA==,
+      }
+    engines: { node: ">= 16" }
+    dependencies:
+      follow-redirects: 1.15.3
+      tar-fs: 3.0.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@swc/helpers@0.5.1:
     resolution:
       {
@@ -7421,6 +7437,13 @@ packages:
     dependencies:
       deep-equal: 2.2.1
     dev: true
+
+  /b4a@1.6.4:
+    resolution:
+      {
+        integrity: sha512-fpWrvyVHEKyeEvbKZTVOeZF3VSKKWtJxFIxX/jaVPf+cLbGUSitjb49pHLqPV2BUNNZ0LcoeEGfE/YCpyDYHIw==,
+      }
+    dev: false
 
   /balanced-match@1.0.2:
     resolution:
@@ -9302,37 +9325,6 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils@2.8.0(eslint-import-resolver-node@0.3.7)(eslint@8.50.0):
-    resolution:
-      {
-        integrity: sha512-aWajIYfsqCKRDgUfjEXNN/JlrzauMuSEy5sbd7WXbtW3EH6A6MpwEh42c7qD+MqQo9QMJ6fWLAeIJynx0g6OAw==,
-      }
-    engines: { node: ">=4" }
-    peerDependencies:
-      "@typescript-eslint/parser": "*"
-      eslint: "*"
-      eslint-import-resolver-node: "*"
-      eslint-import-resolver-typescript: "*"
-      eslint-import-resolver-webpack: "*"
-    peerDependenciesMeta:
-      "@typescript-eslint/parser":
-        optional: true
-      eslint:
-        optional: true
-      eslint-import-resolver-node:
-        optional: true
-      eslint-import-resolver-typescript:
-        optional: true
-      eslint-import-resolver-webpack:
-        optional: true
-    dependencies:
-      debug: 3.2.7
-      eslint: 8.50.0
-      eslint-import-resolver-node: 0.3.7
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /eslint-plugin-eslint-comments@3.2.0(eslint@8.50.0):
     resolution:
       {
@@ -9406,7 +9398,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.50.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.8.0(eslint-import-resolver-node@0.3.7)(eslint@8.50.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.5.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.6.0)(eslint@8.50.0)
       has: 1.0.3
       is-core-module: 2.13.0
       is-glob: 4.0.3
@@ -9940,6 +9932,13 @@ packages:
       {
         integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==,
       }
+
+  /fast-fifo@1.3.2:
+    resolution:
+      {
+        integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==,
+      }
+    dev: false
 
   /fast-glob@3.3.1:
     resolution:
@@ -12440,6 +12439,13 @@ packages:
         integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==,
       }
 
+  /mkdirp-classic@0.5.3:
+    resolution:
+      {
+        integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==,
+      }
+    dev: false
+
   /mkdirp@0.5.6:
     resolution:
       {
@@ -13890,6 +13896,13 @@ packages:
         integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==,
       }
 
+  /queue-tick@1.0.1:
+    resolution:
+      {
+        integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==,
+      }
+    dev: false
+
   /range-parser@1.2.1:
     resolution:
       {
@@ -14995,6 +15008,16 @@ packages:
       }
     engines: { node: ">=10.0.0" }
 
+  /streamx@2.15.1:
+    resolution:
+      {
+        integrity: sha512-fQMzy2O/Q47rgwErk/eGeLu/roaFWV0jVsogDmrszM9uIw8L5OA+t+V93MgYlufNptfjmYR1tOMWhei/Eh7TQA==,
+      }
+    dependencies:
+      fast-fifo: 1.3.2
+      queue-tick: 1.0.1
+    dev: false
+
   /string-argv@0.3.2:
     resolution:
       {
@@ -15344,6 +15367,17 @@ packages:
       tar-stream: 2.2.0
     dev: false
 
+  /tar-fs@3.0.4:
+    resolution:
+      {
+        integrity: sha512-5AFQU8b9qLfZCX9zp2duONhPmZv0hGYiBPJsyUdqMjzq/mqVpy/rEUSeHk1+YitmxugaptgBh5oDGU3VsAJq4w==,
+      }
+    dependencies:
+      mkdirp-classic: 0.5.3
+      pump: 3.0.0
+      tar-stream: 3.1.6
+    dev: false
+
   /tar-stream@2.2.0:
     resolution:
       {
@@ -15356,6 +15390,17 @@ packages:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.2
+
+  /tar-stream@3.1.6:
+    resolution:
+      {
+        integrity: sha512-B/UyjYwPpMBv+PaFSWAmtYjwdrlEaZQEhMIBFNC5oEG8lpiW8XjcSdmEaClj28ArfKScKHs2nshz3k2le6crsg==,
+      }
+    dependencies:
+      b4a: 1.6.4
+      fast-fifo: 1.3.2
+      streamx: 2.15.1
+    dev: false
 
   /text-hex@1.0.0:
     resolution:
@@ -16210,74 +16255,6 @@ packages:
       rollup: 3.29.4
     optionalDependencies:
       fsevents: 2.3.3
-
-  /vitest@0.34.6:
-    resolution:
-      {
-        integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==,
-      }
-    engines: { node: ">=v14.18.0" }
-    hasBin: true
-    peerDependencies:
-      "@edge-runtime/vm": "*"
-      "@vitest/browser": "*"
-      "@vitest/ui": "*"
-      happy-dom: "*"
-      jsdom: "*"
-      playwright: "*"
-      safaridriver: "*"
-      webdriverio: "*"
-    peerDependenciesMeta:
-      "@edge-runtime/vm":
-        optional: true
-      "@vitest/browser":
-        optional: true
-      "@vitest/ui":
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-      playwright:
-        optional: true
-      safaridriver:
-        optional: true
-      webdriverio:
-        optional: true
-    dependencies:
-      "@types/chai": 4.3.6
-      "@types/chai-subset": 1.3.3
-      "@types/node": 20.8.0
-      "@vitest/expect": 0.34.6
-      "@vitest/runner": 0.34.6
-      "@vitest/snapshot": 0.34.6
-      "@vitest/spy": 0.34.6
-      "@vitest/utils": 0.34.6
-      acorn: 8.10.0
-      acorn-walk: 8.2.0
-      cac: 6.7.14
-      chai: 4.3.10
-      debug: 4.3.4
-      local-pkg: 0.4.3
-      magic-string: 0.30.4
-      pathe: 1.1.1
-      picocolors: 1.0.0
-      std-env: 3.4.3
-      strip-literal: 1.3.0
-      tinybench: 2.5.1
-      tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.8.0)
-      vite-node: 0.34.6(@types/node@20.8.0)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-    dev: true
 
   /vitest@0.34.6(jsdom@22.1.0):
     resolution:

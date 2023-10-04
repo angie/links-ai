@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@backend/core": "workspace:^",
+    "@sparticuz/chromium": "^117.0.0",
     "axios": "^1.5.1",
     "chrome-aws-lambda": "^10.1.0",
     "html-to-text": "^9.0.5",
