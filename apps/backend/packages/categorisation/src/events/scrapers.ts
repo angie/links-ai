@@ -64,7 +64,11 @@ export async function getUrlContents(url: string): Promise<ScrapedContent> {
   let isMain = false;
   let title = "";
 
-  if (process.env.NODE_ENV !== "production") {
+  // TODO: make this more generic for any deployed stage, not just dev
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.SST_STAGE !== "dev"
+  ) {
     logger.info("Scraping link with local playwright");
     const res = await getUrlContentsWithLocalPlaywright(url);
     content = res.content;
