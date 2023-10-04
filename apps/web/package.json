@@ -27,7 +27,7 @@
     "@types/jsdom": "^21.1.3",
     "@types/node": "^18.11.17",
     "@types/react": "^18.2.5",
-    "@types/react-dom": "^18.2.4",
+    "@types/react-dom": "^18.2.9",
     "autoprefixer": "^10.4.13",
     "eslint-config-custom": "workspace:*",
     "jsdom": "^22.1.0",
