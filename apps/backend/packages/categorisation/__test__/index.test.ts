@@ -3,10 +3,10 @@ import { Events } from "@backend/core/events";
 import { fromPartial } from "@total-typescript/shoehorn";
 import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
-import * as openAIUtils from "../../src/events/openai-utils";
-import * as scrapers from "../../src/events/scrapers";
-import { handler } from "../../src/events/stored";
-import { responses } from "../fixtures/openai-responses";
+import * as openAIUtils from "../src/openai-utils";
+import * as scrapers from "../src/scrapers";
+import { handler } from "../src";
+import { responses } from "./fixtures/openai-responses";
 
 vi.mock("@backend/core/events", () => ({
   Events: {

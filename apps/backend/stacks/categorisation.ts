@@ -21,7 +21,7 @@ export function linkCategorisation({ app, stack }: StackContext): void {
 
   bus.subscribe("link.stored", {
     bind: [bus, table, OPENAI_API_KEY],
-    handler: "packages/categorisation/src/events/stored.handler",
+    handler: "packages/categorisation/src/index.handler",
     runtime: "nodejs18.x",
     timeout: 30,
     layers: [layer],
