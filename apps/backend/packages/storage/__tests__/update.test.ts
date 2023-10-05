@@ -1,29 +1,34 @@
-import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
+import { Events } from "@backend/core/events";
 import { fromPartial } from "@total-typescript/shoehorn";
 import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
-import { Events } from "@backend/core/events";
+import * as data from "../src/data";
 import { handler } from "../src/update";
 
 vi.mock("logger");
 
+const mockDynamo = mockClient(DynamoDBClient);
 beforeEach(() => {
+  mockDynamo.reset();
   vi.clearAllMocks();
 });
 
+const categorised = {
+  categories: ["Sports"],
+  id: "123",
+  summary:
+    "Referees' body PGMOL has released the full audio from the VAR hub relating to the Luis Diaz goal that was incorrectly disallowed in Tottenham Hotspur v Liverpool on Saturday.",
+  title: "Really funny what happened to Liverpool",
+  url: "https://example.com",
+};
+
 test("should update link in database and emit event", async () => {
-  const categorised = {
-    categories: ["Sports"],
-    id: "123",
-    summary:
-      "Referees' body PGMOL has released the full audio from the VAR hub relating to the Luis Diaz goal that was incorrectly disallowed in Tottenham Hotspur v Liverpool on Saturday.",
-    title: "Really funny what happened to Liverpool",
-    url: "https://example.com",
-  };
   const storedCategorisedSpy = vi.spyOn(Events.StoredCategorised, "publish");
 
-  const mockDynamo = mockClient(DynamoDBClient);
-  mockDynamo.on(PutItemCommand).rejects();
+  vi.spyOn(data, "updateLink").mockResolvedValueOnce({
+    data: categorised,
+  });
 
   await handler(
     fromPartial({
@@ -40,39 +45,30 @@ test("should update link in database and emit event", async () => {
     categorised,
   );
 
-  expect(mockDynamo.calls()).toHaveLength(1);
   expect(logger.info).toHaveBeenCalledWith(
     "Stored categorised link",
     categorised,
   );
 
-  expect(storedCategorisedSpy).toHaveBeenCalledWith({
-    id: "123",
-    url: "https://example.com",
-  });
+  expect(storedCategorisedSpy).toHaveBeenCalledWith(categorised);
 });
 
 test("should log an error if trying to insert a duplicate link", async () => {
-  const mockDynamo = mockClient(DynamoDBClient);
-  mockDynamo.onAnyCommand().rejects();
+  mockDynamo.on(UpdateItemCommand).rejects();
 
   await handler(
     fromPartial({
       id: "123",
       "detail-type": "link.submitted",
       detail: {
-        properties: {
-          id: "123",
-          url: "https://example.com",
-        },
+        properties: categorised,
       },
     }),
   );
 
   expect(mockDynamo.calls()).toHaveLength(1);
   expect(logger.error).toHaveBeenCalledWith("Failed to store link", {
-    id: "123",
-    url: "https://example.com",
+    link: categorised,
     error: expect.any(Error),
   });
 });

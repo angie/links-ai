@@ -72,10 +72,10 @@ test("should analyse link and emit event to store", async () => {
     url: "https://example.com",
   };
 
-  expect(logger.info).toHaveBeenCalledWith(
-    "Categorised link",
-    categorisedLinkEventBody,
-  );
+  expect(logger.info).toHaveBeenCalledWith("Categorised link", {
+    id: "123",
+    url: "https://example.com",
+  });
 
   expect(vi.mocked(Events.Categorised.publish)).toHaveBeenCalledWith(
     categorisedLinkEventBody,

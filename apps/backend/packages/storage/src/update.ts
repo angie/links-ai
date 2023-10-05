@@ -21,7 +21,6 @@ export const handler = EventHandler(Events.Categorised, async (evt) => {
       url,
     });
   } catch (error) {
-    logger.error(error);
     logger.error("Failed to store link", {
       link: { categories, id, summary, title, url },
       error,
