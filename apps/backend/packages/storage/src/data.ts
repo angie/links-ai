@@ -82,12 +82,14 @@ const links = new Entity(
   config,
 );
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type -- electrodb generated type, not exported and not worth redefining
 export async function createLink({ id, url }: { id: string; url: string }) {
   const link = await links.create({ id, url }).go();
 
   return link;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type -- electrodb generated type, not exported and not worth redefining
 export async function updateLink({
   id,
   categories,

@@ -3,7 +3,7 @@ import { fromPartial } from "@total-typescript/shoehorn";
 import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
 import { Events } from "@backend/core/events";
-import { handler } from "../../src/events/categorised";
+import { handler } from "../src/update";
 
 vi.mock("logger");
 

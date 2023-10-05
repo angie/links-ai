@@ -1,7 +1,7 @@
 import { Events } from "@backend/core/events";
 import { logger } from "logger";
 import { EventHandler } from "sst/node/event-bus";
-import { createLink } from "../data";
+import { createLink } from "./data";
 
 export const handler = EventHandler(Events.Submitted, async (evt) => {
   const { id, url } = evt.properties;

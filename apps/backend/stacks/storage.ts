@@ -7,12 +7,12 @@ export function linkStorage(): void {
   const { table } = use(tableStack);
 
   bus.subscribe("link.submitted", {
-    handler: "packages/storage/src/events/submitted.handler",
+    handler: "packages/storage/src/create.handler",
     bind: [bus, table],
   });
 
   bus.subscribe("link.categorised", {
-    handler: "packages/storage/src/events/categorised.handler",
+    handler: "packages/storage/src/update.handler",
     bind: [bus, table],
   });
 }
