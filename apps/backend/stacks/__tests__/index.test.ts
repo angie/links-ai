@@ -71,21 +71,37 @@ test("dynamo table is created", () => {
     Match.objectLike({
       KeySchema: [
         {
-          AttributeName: "userId",
+          AttributeName: "pk",
           KeyType: "HASH",
         },
         {
-          AttributeName: "url",
+          AttributeName: "sk",
           KeyType: "RANGE",
         },
       ],
       AttributeDefinitions: [
         {
-          AttributeName: "userId",
+          AttributeName: "pk",
           AttributeType: "S",
         },
         {
-          AttributeName: "url",
+          AttributeName: "sk",
+          AttributeType: "S",
+        },
+        {
+          AttributeName: "gsi1pk",
+          AttributeType: "S",
+        },
+        {
+          AttributeName: "gsi1sk",
+          AttributeType: "S",
+        },
+        {
+          AttributeName: "gsi2pk",
+          AttributeType: "S",
+        },
+        {
+          AttributeName: "gsi2sk",
           AttributeType: "S",
         },
       ],
