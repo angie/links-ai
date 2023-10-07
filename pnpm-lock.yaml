@@ -29,7 +29,7 @@ importers:
         specifier: workspace:*
         version: link:packages/tsconfig
       turbo:
-        specifier: latest
+        specifier: ^1.10.14
         version: 1.10.14
       vitest:
         specifier: ^0.34.6
