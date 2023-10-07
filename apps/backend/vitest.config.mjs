@@ -9,6 +9,7 @@ export default mergeConfig(
     test: {
       environment: "node",
       threads: false,
+      globalSetup: "./vitest.globals.mjs",
     },
     resolve: {
       alias: {

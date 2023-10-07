@@ -10,8 +10,8 @@
     "remove": "sst remove",
     "console": "sst console",
     "lint": "eslint .",
-    "test": "sst bind vitest",
-    "test:ci": "sst bind vitest run",
+    "test": "vitest",
+    "test:ci": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "workspaces": [
