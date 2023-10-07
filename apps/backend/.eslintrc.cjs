@@ -1,3 +1,5 @@
+const path = require("node:path");
+
 module.exports = {
   extends: ["custom/library"],
   parserOptions: {
@@ -9,4 +11,24 @@ module.exports = {
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
   },
+  overrides: [
+    {
+      files: ["./packages/core/**/*.ts"],
+      parserOptions: {
+        project: path.resolve(__dirname, "./packages/core/tsconfig.json"),
+      },
+    },
+    {
+      files: ["./packages/query/**/*.ts"],
+      parserOptions: {
+        project: path.resolve(__dirname, "./packages/query/tsconfig.json"),
+      },
+    },
+    {
+      files: ["./packages/storage/**/*.ts"],
+      parserOptions: {
+        project: path.resolve(__dirname, "./packages/storage/tsconfig.json"),
+      },
+    },
+  ],
 };

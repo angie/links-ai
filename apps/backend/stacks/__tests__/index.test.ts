@@ -31,6 +31,10 @@ test("link query API gateway has expected routes", () => {
   });
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
+    RouteKey: "GET /links/{id}",
+  });
+
+  template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
     RouteKey: "GET /links/category/{category}",
   });
 });

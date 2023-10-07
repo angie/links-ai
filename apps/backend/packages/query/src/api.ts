@@ -16,6 +16,17 @@ export const getAll = ApiHandler(
   },
 );
 
+export const getById = ApiHandler(
+  async (
+    event: APIGatewayProxyEventV2,
+  ): Promise<APIGatewayProxyStructuredResultV2> => {
+    logger.info("Getting link by id", { event });
+    return Promise.resolve({
+      statusCode: 200,
+    });
+  },
+);
+
 export const getByCategory = ApiHandler(
   async (
     event: APIGatewayProxyEventV2,

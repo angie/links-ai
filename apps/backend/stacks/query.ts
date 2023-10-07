@@ -15,6 +15,7 @@ export function linkQuery({ stack }: StackContext): void {
     },
     routes: {
       "GET /links": "packages/query/src/api.getAll",
+      "GET /links/{id}": "packages/query/src/api.getById",
       "GET /links/category/{category}": "packages/query/src/api.getByCategory",
     },
   });

@@ -9,6 +9,8 @@
     "@types/node": "^20.7.0"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.423.0",
+    "electrodb": "^2.10.0",
     "sst": "^2.26.5",
     "typescript": "^5.2.2",
     "zod": "^3.22.2"

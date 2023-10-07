@@ -2,8 +2,9 @@
   "extends": "tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": false,
-    "declarationMap": false,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {

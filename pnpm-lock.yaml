@@ -140,6 +140,12 @@ importers:
 
   apps/backend/packages/core:
     dependencies:
+      "@aws-sdk/client-dynamodb":
+        specifier: ^3.423.0
+        version: 3.423.0
+      electrodb:
+        specifier: ^2.10.0
+        version: 2.10.0(@aws-sdk/client-dynamodb@3.423.0)
       sst:
         specifier: ^2.26.5
         version: 2.26.9
