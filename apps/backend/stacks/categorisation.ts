@@ -23,7 +23,8 @@ export function linkCategorisation({ app, stack }: StackContext): void {
     bind: [bus, table, OPENAI_API_KEY],
     handler: "packages/categorisation/src/index.handler",
     runtime: "nodejs18.x",
-    timeout: 30,
+    // sometimes playwright is slow
+    timeout: 120,
     layers: [layer],
     nodejs: {
       install: ["@sparticuz/chromium"],

@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "test:ci": "vitest run",
+    "test:smoke": "sst bind --stage dev vitest run --dir smoke-tests -c vitest.config.smoke.mjs",
     "typecheck": "tsc --noEmit"
   },
   "workspaces": [
@@ -23,6 +24,7 @@
     "constructs": "10.2.69",
     "eslint-config-custom": "workspace:^",
     "eslint-import-resolver-alias": "^1.1.2",
+    "logger": "workspace:^",
     "sst": "^2.26.5",
     "tsconfig": "workspace:^",
     "typescript": "^5.2.2",
