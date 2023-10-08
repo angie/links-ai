@@ -131,6 +131,9 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
+      ulid:
+        specifier: ^2.3.0
+        version: 2.3.0
       vitest:
         specifier: ^0.34.6
         version: 0.34.6(playwright@1.38.1)
@@ -16359,7 +16362,6 @@ packages:
         integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==,
       }
     hasBin: true
-    dev: false
 
   /ultron@1.1.1:
     resolution:

@@ -4,14 +4,19 @@ import type {
 } from "aws-lambda";
 import { logger } from "logger";
 import { ApiHandler } from "sst/node/api";
+import { getAllLinks } from "./data";
 
 export const getAll = ApiHandler(
   async (
-    event: APIGatewayProxyEventV2,
+    _event: APIGatewayProxyEventV2,
   ): Promise<APIGatewayProxyStructuredResultV2> => {
-    logger.info("Getting all links", { event });
+    logger.info("Getting all links");
+
+    const links = await getAllLinks();
+
     return Promise.resolve({
       statusCode: 200,
+      body: JSON.stringify(links, null, 2),
     });
   },
 );

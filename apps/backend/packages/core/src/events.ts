@@ -1,30 +1,20 @@
-import { z } from "zod";
 import { event } from "./event-builder";
+import { baseSchema, processedSchema } from "./types/link";
+
+const fullLinkSchemaForCategorisationEvents = {
+  ...baseSchema,
+  ...processedSchema,
+};
 
 export const Events = {
-  Categorised: event("link.categorised", {
-    id: z.string(),
-    categories: z.array(z.string()),
-    summary: z.string(),
-    title: z.string(),
-    url: z.string().url(),
-  }),
+  Categorised: event("link.categorised", fullLinkSchemaForCategorisationEvents),
   Created: event("link.created", {
-    id: z.string(),
+    id: baseSchema.id,
   }),
-  Stored: event("link.stored", {
-    id: z.string(),
-    url: z.string().url(),
-  }),
-  StoredCategorised: event("link.stored.categorised", {
-    id: z.string(),
-    categories: z.array(z.string()),
-    summary: z.string(),
-    title: z.string(),
-    url: z.string().url(),
-  }),
-  Submitted: event("link.submitted", {
-    id: z.string(),
-    url: z.string().url(),
-  }),
+  Stored: event("link.stored", baseSchema),
+  StoredCategorised: event(
+    "link.stored.categorised",
+    fullLinkSchemaForCategorisationEvents,
+  ),
+  Submitted: event("link.submitted", baseSchema),
 };

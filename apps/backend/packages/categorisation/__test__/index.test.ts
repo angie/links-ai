@@ -2,6 +2,7 @@ import { EventBridgeClient } from "@aws-sdk/client-eventbridge";
 import { fromPartial } from "@total-typescript/shoehorn";
 import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
+import { ulid } from "ulid";
 import { handler } from "../src";
 import * as openAIUtils from "../src/openai-utils";
 import * as scrapers from "../src/scrapers";
@@ -17,6 +18,7 @@ beforeEach(() => {
 });
 
 test("should analyse link and emit event to store", async () => {
+  const id = ulid();
   vi.spyOn(openAIUtils, "getOpenAIClient").mockReturnValue(
     fromPartial({
       chat: {
@@ -35,11 +37,11 @@ test("should analyse link and emit event to store", async () => {
 
   await handler(
     fromPartial({
-      id: "123",
+      id,
       "detail-type": "link.stored",
       detail: {
         properties: {
-          id: "123",
+          id,
           url: "https://example.com",
         },
       },
@@ -47,7 +49,7 @@ test("should analyse link and emit event to store", async () => {
   );
 
   expect(logger.info).toHaveBeenCalledWith("Categorising link", {
-    id: "123",
+    id,
     url: "https://example.com",
   });
 
@@ -56,7 +58,7 @@ test("should analyse link and emit event to store", async () => {
   );
 
   const categorisedLinkEventBody = {
-    id: "123",
+    id,
     categories: ["Sports"],
     summary: parsedContent.summary,
     title: "Really funny what happened to Liverpool",
@@ -64,16 +66,20 @@ test("should analyse link and emit event to store", async () => {
   };
 
   expect(logger.info).toHaveBeenCalledWith("Categorised link", {
-    id: "123",
+    id,
     url: "https://example.com",
   });
 
   const emittedEvent = eventBridgeClientMock.call(0).firstArg.input.Entries[0];
+  // could type this properly...
+  const emittedEventBody = JSON.parse(emittedEvent.Detail as string);
 
   expect(emittedEvent).toEqual({
-    Detail: JSON.stringify({ properties: categorisedLinkEventBody }),
+    Detail: expect.any(String),
     DetailType: "link.categorised",
     EventBusName: expect.any(String),
     Source: expect.any(String),
   });
+
+  expect(emittedEventBody.properties).toEqual(categorisedLinkEventBody);
 });
