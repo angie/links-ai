@@ -1,3 +1,5 @@
+import { DataError } from "@backend/core/errors";
+import { createApiResponse } from "@backend/core/response-helper";
 import type {
   APIGatewayProxyEventV2,
   APIGatewayProxyStructuredResultV2,
@@ -12,23 +14,25 @@ export const getAll = ApiHandler(
   ): Promise<APIGatewayProxyStructuredResultV2> => {
     logger.info("Getting all links");
 
-    const links = await getAllLinks();
+    try {
+      const links = await getAllLinks();
 
-    return Promise.resolve({
-      statusCode: 200,
-      body: JSON.stringify(links, null, 2),
-    });
-  },
-);
-
-export const getById = ApiHandler(
-  async (
-    event: APIGatewayProxyEventV2,
-  ): Promise<APIGatewayProxyStructuredResultV2> => {
-    logger.info("Getting link by id", { event });
-    return Promise.resolve({
-      statusCode: 200,
-    });
+      return createApiResponse({
+        statusCode: 200,
+        body: links,
+      });
+    } catch (error) {
+      if (error instanceof DataError) {
+        return createApiResponse({
+          statusCode: 500,
+          body: { error: error.message },
+        });
+      }
+      return createApiResponse({
+        statusCode: 500,
+        body: { error: "Failed to get all links", rawError: error },
+      });
+    }
   },
 );
 
@@ -37,8 +41,10 @@ export const getByCategory = ApiHandler(
     event: APIGatewayProxyEventV2,
   ): Promise<APIGatewayProxyStructuredResultV2> => {
     logger.info("Getting links by category", { event });
-    return Promise.resolve({
-      statusCode: 200,
-    });
+    return Promise.resolve(
+      createApiResponse({
+        statusCode: 200,
+      }),
+    );
   },
 );

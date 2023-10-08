@@ -6,6 +6,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.122",
     "@types/node": "^20.7.0"
   },
   "dependencies": {
