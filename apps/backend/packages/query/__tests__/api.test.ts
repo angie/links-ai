@@ -1,12 +1,9 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { fromPartial } from "@total-typescript/shoehorn";
 import { mockClient } from "aws-sdk-client-mock";
-import { getAll } from "../src/api";
+import { getAll, getById } from "../src/api";
+import { getResultItem } from "./fixtures/get-results";
 import { parsedResultsItems, scanResultsItems } from "./fixtures/scan-results";
-
-export const isUlid = (value: string): boolean => {
-  return /^[0-7][\dA-HJKMNP-TV-Z]{25}$/.test(value);
-};
 
 const mockDynamoDb = mockClient(DynamoDBClient);
 
@@ -14,7 +11,7 @@ beforeEach(() => {
   mockDynamoDb.reset();
 });
 
-test("should return links", async () => {
+test("GET /links should return links", async () => {
   mockDynamoDb.onAnyCommand().resolves({
     // electrodb and aws-sdk have different types for the response
     // @ts-expect-error -- there is a mismatch between the expected and actual types
@@ -43,7 +40,7 @@ test("should return links", async () => {
   });
 });
 
-test("should return an empty array if there are no links", async () => {
+test("GET /links should return an empty array if there are no links", async () => {
   mockDynamoDb.onAnyCommand().resolves({
     Items: [],
     Count: 0,
@@ -70,7 +67,7 @@ test("should return an empty array if there are no links", async () => {
   });
 });
 
-test("should return a 500 error and log if electrodb throws", async () => {
+test("GET /links should return a 500 error and log if electrodb throws", async () => {
   mockDynamoDb.onAnyCommand().rejects(new Error("Something went wrong"));
 
   const res = await getAll(
@@ -88,6 +85,54 @@ test("should return a 500 error and log if electrodb throws", async () => {
   const parsedBody = JSON.parse(res.body ?? "{}");
 
   expect(parsedBody).toEqual({
-    error: "Something went wrong",
+    error: "Failed to get all links",
+  });
+});
+
+test("GET /links/{id} should return a link by ID", async () => {
+  mockDynamoDb.onAnyCommand().resolves({
+    // electrodb and aws-sdk have different types for the response
+    // @ts-expect-error -- there is a mismatch between the expected and actual types
+    Item: getResultItem,
+  });
+
+  const res = await getById(
+    fromPartial({
+      pathParameters: {
+        id: "01F2QYVZJ5B6Y5ZJ3ZJ1T9Y1WJ",
+      },
+    }),
+    fromPartial({}),
+  );
+
+  expect(res.statusCode).toEqual(200);
+
+  const parsedBody = JSON.parse(res.body ?? "{}");
+
+  expect(parsedBody).toEqual({
+    data: parsedResultsItems[0],
+  });
+});
+
+test("GET /links/{id} should return a 404 if the link does not exist", async () => {
+  mockDynamoDb.onAnyCommand().resolves({
+    Item: undefined,
+  });
+
+  const res = await getById(
+    fromPartial({
+      pathParameters: {
+        id: "01F2QYVZJ5B6Y5ZJ3ZJ1T9Y1WJ",
+      },
+    }),
+    fromPartial({}),
+  );
+
+  expect(res.statusCode).toEqual(404);
+
+  const parsedBody = JSON.parse(res.body ?? "{}");
+
+  expect(parsedBody).toEqual({
+    error: "Link not found",
   });
 });

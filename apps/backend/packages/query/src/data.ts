@@ -11,3 +11,13 @@ export async function getAllLinks(): Promise<{ data: Link[] }> {
     throw new DataError("Failed to get all links", error);
   }
 }
+
+export async function getLinkById(id: string): Promise<Link | null> {
+  try {
+    const { data } = await links.get({ id }).go();
+
+    return data;
+  } catch (error) {
+    throw new DataError(`Failed to get link by id: ${id}`, error);
+  }
+}

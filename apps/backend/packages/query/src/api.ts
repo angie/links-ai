@@ -6,7 +6,7 @@ import type {
 } from "aws-lambda";
 import { logger } from "logger";
 import { ApiHandler } from "sst/node/api";
-import { getAllLinks } from "./data";
+import { getAllLinks, getLinkById } from "./data";
 
 export const getAll = ApiHandler(
   async (
@@ -31,6 +31,50 @@ export const getAll = ApiHandler(
       return createApiResponse({
         statusCode: 500,
         body: { error: "Failed to get all links", rawError: error },
+      });
+    }
+  },
+);
+
+export const getById = ApiHandler(
+  async (
+    event: APIGatewayProxyEventV2,
+  ): Promise<APIGatewayProxyStructuredResultV2> => {
+    logger.info("Getting link by id", { event });
+
+    try {
+      const id = event.pathParameters?.id;
+
+      if (!id) {
+        return createApiResponse({
+          statusCode: 400,
+          body: { error: "Missing id" },
+        });
+      }
+
+      const link = await getLinkById(id);
+
+      if (!link) {
+        return createApiResponse({
+          statusCode: 404,
+          body: { error: "Link not found" },
+        });
+      }
+
+      return createApiResponse({
+        statusCode: 200,
+        body: { data: link },
+      });
+    } catch (error) {
+      if (error instanceof DataError) {
+        return createApiResponse({
+          statusCode: 500,
+          body: { error: error.message },
+        });
+      }
+      return createApiResponse({
+        statusCode: 500,
+        body: { error: "Failed to get link by id", rawError: error },
       });
     }
   },
