@@ -65,10 +65,10 @@ test("should analyse link and emit event to store", async () => {
     url: "https://example.com",
   };
 
-  expect(logger.info).toHaveBeenCalledWith("Categorised link", {
-    id,
-    url: "https://example.com",
-  });
+  expect(logger.info).toHaveBeenCalledWith(
+    "Categorised link",
+    categorisedLinkEventBody,
+  );
 
   const emittedEvent = eventBridgeClientMock.call(0).firstArg.input.Entries[0];
   // could type this properly...
