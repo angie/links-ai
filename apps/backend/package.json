@@ -13,8 +13,7 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "test:smoke": "sst bind --stage dev 'vitest run --dir smoke-tests -c vitest.config.smoke.mjs'",
-    "typecheck": "tsc --noEmit",
-    "postinstall": "sst types"
+    "typecheck": "tsc --noEmit"
   },
   "workspaces": [
     "packages/*"

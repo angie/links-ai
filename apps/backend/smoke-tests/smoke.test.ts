@@ -1,11 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference -- just a little hack as a treat
-/// <reference path="../.sst/types/index.ts" />
 /// <reference lib="dom" />
-import * as logger from "logger";
+import { logger } from "logger";
 import { Api } from "sst/node/api";
 import { expect, test } from "vitest";
 
 test("should submit a link and categorise it", async () => {
+  // @ts-expect-error -- TODO: why aren't SST types being picked up?
   const ingestApiUrl = `${Api["ingest-api"].url}/submit`;
 
   // submit a link
@@ -17,23 +16,22 @@ test("should submit a link and categorise it", async () => {
     body: JSON.stringify({ url: "https://example.com" }),
   });
   const ingestResponseJson = await ingestResponse.json();
-  logger.logger.info(
-    `Created link with ID: ${JSON.stringify(ingestResponseJson.id)}`,
-  );
+  logger.info(`Created link with ID: ${JSON.stringify(ingestResponseJson.id)}`);
 
   expect(ingestResponse.status).toBe(202);
 
   // query to check is has been processed
+  // @ts-expect-error -- TODO: why aren't SST types being picked up?
   const queryByIdUrl = `${Api["query-api"].url}/links/${ingestResponseJson.id}`;
   let queryResponse;
   let queryResponseJson;
   do {
     /* eslint-disable no-await-in-loop -- lots of grim stuff in here */
-    logger.logger.info("checking whether link has been processed");
+    logger.info("checking whether link has been processed");
     queryResponse = await fetch(queryByIdUrl);
     queryResponseJson = await queryResponse.json();
 
-    logger.logger.info("current link", { response: queryResponseJson });
+    logger.info("current link", { response: queryResponseJson });
     // wait for five seconds for processing to complete with coldstart
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);
@@ -46,7 +44,7 @@ test("should submit a link and categorise it", async () => {
   const {
     data: { id, url, title },
   } = queryResponseJson;
-  logger.logger.info("processed link", { response: queryResponseJson });
+  logger.info("processed link", { response: queryResponseJson });
 
   expect(id).toBe(ingestResponseJson.id);
   expect(url).toBe("https://example.com");
