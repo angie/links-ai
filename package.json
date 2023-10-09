@@ -9,6 +9,7 @@
     "test": "turbo test --filter=!./apps/backend/**",
     "test:backend": "turbo test --filter=backend",
     "test:ci": "CI=true pnpm test && CI=true pnpm test:backend",
+    "test:smoke": "cd apps/backend && pnpm test:smoke",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {

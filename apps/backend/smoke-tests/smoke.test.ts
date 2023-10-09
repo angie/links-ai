@@ -34,7 +34,7 @@ test("should submit a link and categorise it", async () => {
     logger.info("current link", { response: queryResponseJson });
     // wait for five seconds for processing to complete with coldstart
     await new Promise((resolve) => {
-      setTimeout(resolve, 1000);
+      setTimeout(resolve, 5000);
     });
   } while (!queryResponseJson.title);
   /* eslint-enable -- done awaiting in a loop */
@@ -49,4 +49,4 @@ test("should submit a link and categorise it", async () => {
   expect(id).toBe(ingestResponseJson.id);
   expect(url).toBe("https://example.com");
   expect(title).toBe("Example Domain");
-}, 10000);
+}, 30000);
