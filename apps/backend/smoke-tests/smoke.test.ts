@@ -20,29 +20,26 @@ test("should submit a link and categorise it", async () => {
 
   expect(ingestResponse.status).toBe(202);
 
+  // wait for 10 seconds for processing to complete with coldstart
+  const FIFTEEN_SECONDS = 15000;
+  await new Promise((resolve) => {
+    setTimeout(resolve, FIFTEEN_SECONDS);
+  });
+
   // query to check is has been processed
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
   const queryByIdUrl = `${Api["query-api"].url}/links/${ingestResponseJson.id}`;
-  let queryResponse;
-  let queryResponseJson;
-  while (!queryResponseJson?.title) {
-    /* eslint-disable no-await-in-loop -- lots of grim stuff in here */
-    logger.info("checking whether link has been processed");
-    queryResponse = await fetch(queryByIdUrl, {
-      headers: { "Cache-Control": "no-cache" },
-    });
-    const { data } = await queryResponse.json();
-    queryResponseJson = data;
 
-    logger.info("current link", { response: queryResponseJson });
-    // wait for five seconds for processing to complete with coldstart
-    await new Promise((resolve) => {
-      setTimeout(resolve, 5000);
-    });
-  }
-  /* eslint-enable -- done awaiting in a loop */
+  logger.info("checking whether link has been processed");
+  const queryResponse = await fetch(queryByIdUrl, {
+    headers: { "Cache-Control": "no-cache" },
+  });
+  const { data } = await queryResponse.json();
+  const queryResponseJson = data;
 
-  expect(queryResponse?.status).toBe(200);
+  logger.info("current link", { response: queryResponseJson });
+
+  expect(queryResponse.status).toBe(200);
 
   const {
     data: { id, url, title },
