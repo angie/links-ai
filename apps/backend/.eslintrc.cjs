@@ -19,6 +19,12 @@ module.exports = {
       },
     },
     {
+      files: ["./packages/ingest/**/*.ts"],
+      parserOptions: {
+        project: path.resolve(__dirname, "./packages/ingest/tsconfig.json"),
+      },
+    },
+    {
       files: ["./packages/query/**/*.ts"],
       parserOptions: {
         project: path.resolve(__dirname, "./packages/query/tsconfig.json"),

@@ -14,9 +14,9 @@ export function linkIngest({ stack }: StackContext): void {
       },
     },
     routes: {
-      "PATCH /links/{linkId}": "packages/ingest/src/api.archive",
+      "PATCH /links/{id}": "packages/ingest/src/api.archive",
       "POST /submit": "packages/ingest/src/api.create",
-      "DELETE /links/{linkId}": "packages/ingest/src/api.remove",
+      "DELETE /links/{id}": "packages/ingest/src/api.remove",
     },
   });
 

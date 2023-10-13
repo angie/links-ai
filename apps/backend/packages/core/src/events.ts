@@ -11,6 +11,9 @@ export const Events = {
   Created: event("link.created", {
     id: baseSchema.id,
   }),
+  Removed: event("link.removed", {
+    id: baseSchema.id,
+  }),
   Stored: event("link.stored", baseSchema),
   StoredCategorised: event(
     "link.stored.categorised",

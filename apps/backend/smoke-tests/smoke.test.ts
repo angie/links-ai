@@ -47,4 +47,15 @@ test("should submit a link and categorise it", async () => {
   expect(id).toBe(ingestResponseJson.id);
   expect(url).toBe("https://example.com");
   expect(title).toBe("Example Domain");
+
+  // delete link
+  // @ts-expect-error -- TODO: why aren't SST types being picked up?
+  const deleteByIdUrl = `${Api["ingest-api"].url}/links/${ingestResponseJson.id}`;
+
+  logger.info("deleting link");
+  const deleteResponse = await fetch(deleteByIdUrl, {
+    method: "DELETE",
+  });
+
+  logger.info("deleted link", { response: deleteResponse });
 }, 30000);

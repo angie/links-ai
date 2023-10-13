@@ -54,6 +54,10 @@ export const links = new Entity(
         type: "boolean",
         default: false,
       },
+      deletedAt: {
+        type: "string",
+        required: false,
+      },
     },
     indexes: {
       byId: {

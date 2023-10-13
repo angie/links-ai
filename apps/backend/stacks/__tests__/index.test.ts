@@ -19,7 +19,11 @@ test("link ingest API gateway has expected routes", () => {
   });
 
   template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
-    RouteKey: "DELETE /links/{linkId}",
+    RouteKey: "PATCH /links/{id}",
+  });
+
+  template.hasResourceProperties("AWS::ApiGatewayV2::Route", {
+    RouteKey: "DELETE /links/{id}",
   });
 });
 
