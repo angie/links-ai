@@ -41,9 +41,7 @@ test("should submit a link and categorise it", async () => {
 
   expect(queryResponse.status).toBe(200);
 
-  const {
-    data: { id, url, title },
-  } = queryResponseJson;
+  const { id, url, title } = queryResponseJson;
   logger.info("processed link", { response: queryResponseJson });
 
   expect(id).toBe(ingestResponseJson.id);
