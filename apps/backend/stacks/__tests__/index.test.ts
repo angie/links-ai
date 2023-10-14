@@ -27,6 +27,16 @@ test("link ingest API gateway has expected routes", () => {
   });
 });
 
+test("link ingest API has expected authorizer", () => {
+  const template = Template.fromStack(getStack(linkIngest));
+
+  template.hasResourceProperties("AWS::ApiGatewayV2::Authorizer", {
+    AuthorizerType: "REQUEST",
+    IdentitySource: ["$request.header.Authorization"],
+    Name: "Authorizer",
+  });
+});
+
 test("link query API gateway has expected routes", () => {
   const template = Template.fromStack(getStack(linkQuery));
 
