@@ -3,7 +3,6 @@ import type {
   APIGatewayAuthorizerResult,
   CustomAuthorizerEvent,
 } from "aws-lambda";
-import { logger } from "logger";
 import { Config } from "sst/node/config";
 
 const TIME_WINDOW = 1 * 60 * 1000; // 1 minutes
@@ -37,7 +36,7 @@ const verifyHmac = (
   );
 };
 
-const generatePolicy = (
+export const generatePolicy = (
   principalId: string,
   effect: string,
   resource: string,
@@ -57,7 +56,7 @@ const generatePolicy = (
   };
 };
 
-const generatePolicyInCI = (
+export const generatePolicyInCI = (
   event: CustomAuthorizerEvent,
 ): Promise<APIGatewayAuthorizerResult> => {
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
@@ -72,7 +71,7 @@ const generatePolicyInCI = (
     : Promise.resolve(generatePolicy("user", "Deny", event.methodArn));
 };
 
-const isRequestFromCI = (
+export const isRequestFromCI = (
   headers: CustomAuthorizerEvent["headers"],
 ): boolean => {
   const { "h-xmac": requestHmac = "", "x-payload": requestToken = "" } =
@@ -83,17 +82,4 @@ const isRequestFromCI = (
     Boolean(requestHmac) &&
     Boolean(requestToken)
   );
-};
-
-export const handler = (
-  event: CustomAuthorizerEvent, // deprecated, but this is the type SST's using!
-): Promise<APIGatewayAuthorizerResult> => {
-  if (isRequestFromCI(event.headers)) {
-    return Promise.resolve(generatePolicyInCI(event));
-  }
-  const token = event.authorizationToken;
-
-  logger.debug("Authorizer token", { token });
-
-  return Promise.resolve(generatePolicy("user", "Deny", event.methodArn));
 };

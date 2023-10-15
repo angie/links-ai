@@ -25,7 +25,7 @@ export function linkIngest({ stack }: StackContext): void {
       Authorizer: {
         type: "lambda",
         function: new Function(stack, "ingest-api-authorizer", {
-          handler: "packages/ingest/src/authorizer.handler",
+          handler: "packages/ingest/src/authorizer/authorizer.handler",
           bind: [SECURE_TOKEN],
         }),
       },
