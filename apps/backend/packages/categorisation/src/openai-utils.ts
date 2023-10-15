@@ -4,7 +4,7 @@ import invariant from "tiny-invariant";
 
 export function getOpenAIClient(): OpenAi {
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
-  return new OpenAi({ apiKey: Config.OPENAI_API_KEY });
+  return new OpenAi({ apiKey: (Config.OPENAI_API_KEY as string) || "" });
 }
 
 interface PromptInputs {
@@ -12,6 +12,11 @@ interface PromptInputs {
   isMain: boolean;
   title: string;
   url: string;
+}
+
+export interface PromptResponse {
+  summary: string;
+  categories: string[];
 }
 
 export function getPrompt({
@@ -41,12 +46,12 @@ export function getPrompt({
 
 export function parseCompletion(
   completion: OpenAi.Chat.Completions.ChatCompletion,
-): { summary: string; categories: string[] } {
+): PromptResponse {
   const { content } = completion.choices[0].message;
 
   invariant(content, "Expected content to be defined");
 
-  const { summary, categories } = JSON.parse(content);
+  const { summary, categories } = JSON.parse(content) as PromptResponse;
 
   return { summary, categories };
 }

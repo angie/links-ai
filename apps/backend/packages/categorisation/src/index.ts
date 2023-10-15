@@ -8,7 +8,7 @@ export const handler = EventHandler(Events.Stored, async (evt) => {
   const { id, url } = evt.properties;
   logger.info("Categorising link", { id, url });
 
-  const { content, isMain, title } = await getUrlContents(url as string);
+  const { content, isMain, title } = await getUrlContents(url);
 
   const openai = getOpenAIClient();
 

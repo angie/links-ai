@@ -2,13 +2,13 @@
   "extends": "tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": false,
-    "declarationMap": false,
+    "declaration": true,
+    "declarationMap": true,
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@backend/core/*": ["./node_modules/@backend/core/src/*"],
-      "@backend/link-categorisation/*": ["./src/*"]
-    }
+      "@backend/core/*": ["../core/src/*"]
+    },
+    "types": ["@types/aws-lambda", "vitest/globals"]
   }
 }

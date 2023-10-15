@@ -6,12 +6,25 @@ module.exports = {
     project: ["./tsconfig.json", "./tsconfig.eslint.json"],
   },
   ignorePatterns: ["**/sst-env.d.ts"],
-  rules: {
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-member-access": "off",
-  },
   overrides: [
+    // for the sake of readability, be a wee bit looser in tests
+    {
+      files: ["**/*.test.ts"],
+      rules: {
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+      },
+    },
+    {
+      files: ["./packages/categorisation/**/*.ts"],
+      parserOptions: {
+        project: path.resolve(
+          __dirname,
+          "./packages/categorisation/tsconfig.json"
+        ),
+      },
+    },
     {
       files: ["./packages/core/**/*.ts"],
       parserOptions: {

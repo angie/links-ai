@@ -11,6 +11,10 @@ import invariant from "tiny-invariant";
 import { ulid } from "ulid";
 import { markDeleted } from "./data";
 
+interface EventBody {
+  url: string;
+}
+
 export const create = ApiHandler(
   async (
     event: APIGatewayProxyEventV2,
@@ -19,14 +23,16 @@ export const create = ApiHandler(
 
     invariant(event.body, "Missing body");
 
-    const url = JSON.parse(event.body).url;
+    const body = JSON.parse(event.body) as EventBody;
 
-    if (!url) {
+    if (!body.url) {
       return createApiResponse({
         statusCode: 400,
         body: { error: "Missing url" },
       });
     }
+
+    const { url } = body;
 
     await Events.Submitted.publish({
       id,
