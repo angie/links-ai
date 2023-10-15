@@ -315,6 +315,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      get-env:
+        specifier: workspace:^
+        version: link:../../packages/get-env
       next:
         specifier: ^13.5.4
         version: 13.5.4(react-dom@18.2.0)(react@18.2.0)
@@ -398,6 +401,18 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
+  packages/get-env:
+    devDependencies:
+      eslint-config-custom:
+        specifier: workspace:^
+        version: link:../eslint-config-custom
+      tsconfig:
+        specifier: workspace:^
+        version: link:../tsconfig
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   packages/logger:
     dependencies:
       winston:
@@ -410,9 +425,6 @@ importers:
       tsconfig:
         specifier: workspace:^
         version: link:../tsconfig
-      tsup:
-        specifier: ^6.1.3
-        version: 6.7.0(postcss@8.4.31)(typescript@5.2.2)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -10210,7 +10222,7 @@ packages:
     engines: { node: ">= 10.17.0" }
     hasBin: true
     dependencies:
-      debug: 4.3.1
+      debug: 4.3.4
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -11202,7 +11214,7 @@ packages:
     engines: { node: ">= 6" }
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.1
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
     dev: false

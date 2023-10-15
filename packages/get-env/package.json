@@ -1,7 +1,7 @@
 {
-  "name": "logger",
+  "name": "get-env",
   "version": "1.0.0",
-  "description": "shared logging package",
+  "description": "parse environment variables",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -17,8 +17,5 @@
     "eslint-config-custom": "workspace:^",
     "tsconfig": "workspace:^",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "winston": "^3.10.0"
   }
 }
