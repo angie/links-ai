@@ -1,11 +1,13 @@
 import type { StackContext } from "sst/constructs";
-import { Function, Api, use } from "sst/constructs";
+import { Api, Function, use } from "sst/constructs";
 import { bus as busStack } from "./event-bus";
+import { secrets } from "./secrets";
 import { table as tableStack } from "./table";
 
 export function linkIngest({ stack }: StackContext): void {
   const { bus } = use(busStack);
   const { table } = use(tableStack);
+  const { SECURE_TOKEN } = use(secrets);
 
   const api = new Api(stack, "ingest-api", {
     defaults: {
@@ -24,6 +26,7 @@ export function linkIngest({ stack }: StackContext): void {
         type: "lambda",
         function: new Function(stack, "ingest-api-authorizer", {
           handler: "packages/ingest/src/authorizer.handler",
+          bind: [SECURE_TOKEN],
         }),
       },
     },

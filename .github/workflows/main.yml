@@ -91,3 +91,4 @@ jobs:
         working-directory: apps/backend
         run: |
           npx sst secrets set --stage dev OPENAI_API_KEY ${{ secrets.OPENAI_API_KEY }}
+          npx sst secrets set --stage dev SECURE_TOKEN ${{ secrets.SECURE_TOKEN }}

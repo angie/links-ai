@@ -1,10 +1,11 @@
 import type { App } from "sst/constructs";
-import { bus } from "./event-bus";
 import { linkCategorisation } from "./categorisation";
+import { bus } from "./event-bus";
 import { linkIngest } from "./ingest";
-import { table } from "./table";
-import { linkStorage } from "./storage";
 import { linkQuery } from "./query";
+import { secrets } from "./secrets";
+import { linkStorage } from "./storage";
+import { table } from "./table";
 
 /**
  * Add all stacks to the app. Used to keep sst.config.ts and tests in lockstep.
@@ -13,6 +14,7 @@ import { linkQuery } from "./query";
 export function addAppStacks(app: App): void {
   app.stack(bus);
   app.stack(table);
+  app.stack(secrets);
   app.stack(linkCategorisation);
   app.stack(linkIngest);
   app.stack(linkStorage);

@@ -1,17 +1,43 @@
 /// <reference lib="dom" />
+import crypto from "node:crypto";
 import { logger } from "logger";
 import { Api } from "sst/node/api";
+import { Config } from "sst/node/config";
 import { expect, test } from "vitest";
+
+function generatePayload(url: string): string {
+  const method = "POST";
+  const timestamp = Date.now();
+  const nonce = crypto.randomBytes(16).toString("hex");
+
+  const payload = `${url}-${method}-${timestamp}-${nonce}`;
+  return payload;
+}
+
+function generateHmac(payload: string): string {
+  // @ts-expect-error -- TODO: why aren't SST types being picked up?
+  const secureToken = Config.SECURE_TOKEN as string;
+  const hmac = crypto.createHmac("sha256", secureToken);
+  hmac.update(payload);
+  const signature = hmac.digest("hex");
+  return signature;
+}
 
 test("should submit a link and categorise it", async () => {
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
   const ingestApiUrl = `${Api["ingest-api"].url}/submit`;
 
+  const payload = generatePayload(ingestApiUrl);
+  const signature = generateHmac(payload);
+
   // submit a link
   const ingestResponse = await fetch(ingestApiUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      authorization: "Bearer 1234",
+      "content-type": "application/json",
+      "x-payload": payload,
+      "x-hmac": signature,
     },
     body: JSON.stringify({ url: "https://example.com" }),
   });
