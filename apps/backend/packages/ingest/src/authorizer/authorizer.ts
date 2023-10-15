@@ -13,6 +13,7 @@ export const handler = (
   event: CustomAuthorizerEvent, // deprecated, but this is the type SST's using!
 ): Promise<APIGatewayAuthorizerResult> => {
   if (isRequestFromCI(event.headers)) {
+    logger.debug("Authorizer request from CI", { event });
     return Promise.resolve(generatePolicyInCI(event));
   }
   const token = event.authorizationToken;
