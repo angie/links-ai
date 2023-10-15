@@ -1,14 +1,11 @@
 {
+  "compilerOptions": {
+    "lib": ["dom", "ES2015"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
   "extends": "tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "lib": ["DOM", "ES2015"],
-    "paths": {
-      "@/*": ["src/*"],
-      "ui": ["src/*"]
-    },
-    "types": ["clsx", "tailwind-merge"]
-  }
+  "exclude": ["dist", "build", "node_modules"]
 }
