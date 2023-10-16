@@ -15,8 +15,7 @@
     "clean": "rm -rf dist",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src/",
-    "test": "jest"
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@turbo/gen": "^1.10.15",
