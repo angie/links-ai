@@ -16,7 +16,7 @@ function generatePayload(url: string): string {
 
 function generateHmac(payload: string): string {
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
-  const secureToken = Config.SECURE_TOKEN;
+  const secureToken: string = Config.SECURE_TOKEN;
   const hmac = crypto.createHmac("sha256", secureToken);
   hmac.update(payload);
   const signature = hmac.digest("hex");
