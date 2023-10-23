@@ -61,7 +61,7 @@ export const generatePolicyInCI = (
 ): Promise<APIGatewayAuthorizerResult> => {
   // @ts-expect-error -- TODO: why aren't SST types being picked up?
   const secureToken = Config.SECURE_TOKEN as string;
-  const { "h-xmac": requestHmac = "", "x-payload": requestToken = "" } =
+  const { "x-hmac": requestHmac = "", "x-payload": requestToken = "" } =
     event.headers ?? {};
 
   const isValid = verifyHmac(requestHmac, requestToken, secureToken);
@@ -74,7 +74,7 @@ export const generatePolicyInCI = (
 export const isRequestFromCI = (
   headers: CustomAuthorizerEvent["headers"],
 ): boolean => {
-  const { "h-xmac": requestHmac = "", "x-payload": requestToken = "" } =
+  const { "x-hmac": requestHmac = "", "x-payload": requestToken = "" } =
     headers ?? {};
 
   return (

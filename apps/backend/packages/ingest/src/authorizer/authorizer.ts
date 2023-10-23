@@ -21,5 +21,5 @@ export const handler = (
   logger.debug("Authorizer token", { token });
 
   // TODO: actually validate the token
-  return Promise.resolve(generatePolicy("user", "Deny", event.methodArn));
+  return Promise.resolve(generatePolicy("user", "Allow", event.methodArn));
 };
