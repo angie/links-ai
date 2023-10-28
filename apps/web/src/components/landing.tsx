@@ -6,13 +6,10 @@ export function Landing(): JSX.Element {
       <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Boost your productivity.
-            <br />
-            Start using our app today.
+            Never lose a link again.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8">
-            Incididunt sint fugiat pariatur cupidatat consectetur sit cillum
-            anim id veniam aliqua proident excepteur commodo do ea.
+            The smart way to save, organize, and share links with anyone.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button>Get started</Button>

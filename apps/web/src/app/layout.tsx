@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "../providers/theme";
+import { IBM_Plex_Mono as IBMPlexMono } from "next/font/google";
 import { NextAuthProvider } from "../providers/auth";
+import { ThemeProvider } from "../providers/theme";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const ibmPlexMono = IBMPlexMono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -18,7 +21,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={ibmPlexMono.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
