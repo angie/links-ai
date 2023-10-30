@@ -1,4 +1,4 @@
-import { Button } from "ui";
+import { Button } from "@ui/components/button";
 
 export function Landing(): JSX.Element {
   return (
@@ -8,7 +8,7 @@ export function Landing(): JSX.Element {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Never lose a link again.
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8">
+          <p className="mx-auto mt-6 max-w-xl text-lg text-left leading-8">
             The smart way to save, organize, and share links with anyone.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">

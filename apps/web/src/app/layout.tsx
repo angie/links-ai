@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono as IBMPlexMono } from "next/font/google";
 import { NextAuthProvider } from "../providers/auth";
 import { ThemeProvider } from "../providers/theme";
-import "./globals.css";
+import "@ui/styles/globals.css";
 
 const ibmPlexMono = IBMPlexMono({
   subsets: ["latin"],
