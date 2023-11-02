@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@ui/components/button";
 import { Icons } from "@ui/components/icons";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 export function Auth(): JSX.Element {
   return (
@@ -14,7 +15,11 @@ export function Auth(): JSX.Element {
           </h1>
         </div>
         <div className="grid gap-6 text-center">
-          <Button type="button" variant="outline">
+          <Button
+            onClick={() => signIn("google", { callbackUrl: "/" })}
+            type="button"
+            variant="outline"
+          >
             {/* eslint-disable-next-line react/jsx-pascal-case -- shadcn generated */}
             <Icons.google className="mr-2 h-4 w-4" />
             Google

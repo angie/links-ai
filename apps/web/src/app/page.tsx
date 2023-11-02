@@ -1,9 +1,19 @@
+"use client";
+
+import { useSession, signOut } from "next-auth/react";
+import { Button } from "@ui/components/button";
 import { Landing } from "../components/landing";
 
 export default function Page(): JSX.Element {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Landing />
-    </main>
-  );
+  const { status } = useSession();
+
+  if (status === "authenticated") {
+    return (
+      <main>
+        <Button onClick={() => signOut()}>Sign out</Button>
+      </main>
+    );
+  }
+
+  return <Landing />;
 }
