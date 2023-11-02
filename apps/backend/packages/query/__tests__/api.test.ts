@@ -1,26 +1,23 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { fromPartial } from "@total-typescript/shoehorn";
-import { mockClient } from "aws-sdk-client-mock";
 import { getAll, getById } from "../src/api";
-import { getResultItem } from "./fixtures/get-results";
-import { parsedResultsItems, scanResultsItems } from "./fixtures/scan-results";
+import { parsedResultsItems } from "./fixtures/scan-results";
 
-const mockDynamoDb = mockClient(DynamoDBClient);
+const mockScanGo = vi.hoisted(() => vi.fn());
+const mockGetGo = vi.hoisted(() => vi.fn());
 
-beforeEach(() => {
-  mockDynamoDb.reset();
-});
+vi.mock("@backend/core/db", () => ({
+  links: {
+    scan: {
+      go: mockScanGo,
+    },
+    get: () => ({
+      go: mockGetGo,
+    }),
+  },
+}));
 
 test("GET /links should return links", async () => {
-  mockDynamoDb.onAnyCommand().resolves({
-    // electrodb and aws-sdk have different types for the response
-    // @ts-expect-error -- there is a mismatch between the expected and actual types
-    Items: scanResultsItems,
-    Count: 2,
-    ScannedCount: 2,
-    ConsumedCapacity: undefined,
-  });
-
+  vi.mocked(mockScanGo).mockResolvedValue({ data: parsedResultsItems });
   const res = await getAll(
     fromPartial({
       queryStringParameters: {
@@ -41,13 +38,7 @@ test("GET /links should return links", async () => {
 });
 
 test("GET /links should return an empty array if there are no links", async () => {
-  mockDynamoDb.onAnyCommand().resolves({
-    Items: [],
-    Count: 0,
-    ScannedCount: 0,
-    ConsumedCapacity: undefined,
-  });
-
+  vi.mocked(mockScanGo).mockResolvedValue({ data: [] });
   const res = await getAll(
     fromPartial({
       queryStringParameters: {
@@ -68,8 +59,7 @@ test("GET /links should return an empty array if there are no links", async () =
 });
 
 test("GET /links should return a 500 error and log if electrodb throws", async () => {
-  mockDynamoDb.onAnyCommand().rejects(new Error("Something went wrong"));
-
+  vi.mocked(mockScanGo).mockRejectedValue(new Error("kaboom"));
   const res = await getAll(
     fromPartial({
       queryStringParameters: {
@@ -90,12 +80,7 @@ test("GET /links should return a 500 error and log if electrodb throws", async (
 });
 
 test("GET /links/{id} should return a link by ID", async () => {
-  mockDynamoDb.onAnyCommand().resolves({
-    // electrodb and aws-sdk have different types for the response
-    // @ts-expect-error -- there is a mismatch between the expected and actual types
-    Item: getResultItem,
-  });
-
+  vi.mocked(mockGetGo).mockResolvedValue({ data: parsedResultsItems[0] });
   const res = await getById(
     fromPartial({
       pathParameters: {
@@ -115,10 +100,7 @@ test("GET /links/{id} should return a link by ID", async () => {
 });
 
 test("GET /links/{id} should return a 404 if the link does not exist", async () => {
-  mockDynamoDb.onAnyCommand().resolves({
-    Item: undefined,
-  });
-
+  vi.mocked(mockGetGo).mockResolvedValue({ data: null });
   const res = await getById(
     fromPartial({
       pathParameters: {

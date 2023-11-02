@@ -7,9 +7,9 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@aws-sdk/client-eventbridge": "^3.423.0",
+    "@aws-sdk/client-eventbridge": "^3.441.0",
     "@total-typescript/shoehorn": "^0.1.1",
-    "@types/aws-lambda": "^8.10.122",
+    "@types/aws-lambda": "^8.10.125",
     "@types/node": "^20.7.0",
     "aws-sdk-client-mock": "^3.0.0",
     "typescript": "^5.2.2",

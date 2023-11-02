@@ -6,14 +6,15 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.122",
-    "@types/node": "^20.7.0"
+    "@types/aws-lambda": "^8.10.125",
+    "@types/node": "^20.8.10"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.423.0",
-    "electrodb": "^2.10.0",
-    "sst": "^2.26.5",
+    "@aws-sdk/client-dynamodb": "^3.441.0",
+    "@aws-sdk/lib-dynamodb": "^3.441.0",
+    "electrodb": "^2.10.4",
+    "sst": "^2.33.2",
     "typescript": "^5.2.2",
-    "zod": "^3.22.2"
+    "zod": "^3.22.4"
   }
 }

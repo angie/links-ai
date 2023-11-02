@@ -1,18 +1,29 @@
-import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { Events } from "@backend/core/events";
 import { fromPartial } from "@total-typescript/shoehorn";
-import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
 import * as data from "../src/data";
 import { handler } from "../src/update";
 
 vi.mock("logger");
 
-const mockDynamo = mockClient(DynamoDBClient);
-beforeEach(() => {
-  mockDynamo.reset();
-  vi.clearAllMocks();
-});
+vi.mock("@backend/core/db", () => ({
+  links: {
+    patch: () => ({
+      set: () => ({
+        go: () => ({
+          data: {
+            id: "123",
+            isArchived: false,
+            isDeleted: false,
+            timestamp: "2020-01-01T00:00:00.000Z",
+            url: "https://example.com",
+            userId: "1",
+          },
+        }),
+      }),
+    }),
+  },
+}));
 
 const categorised = {
   categories: ["Sports"],
@@ -54,8 +65,6 @@ test("should update link in database and emit event", async () => {
 });
 
 test("should log an error if trying to insert a duplicate link", async () => {
-  mockDynamo.on(UpdateItemCommand).rejects();
-
   await handler(
     fromPartial({
       id: "123",
@@ -66,7 +75,6 @@ test("should log an error if trying to insert a duplicate link", async () => {
     }),
   );
 
-  expect(mockDynamo.calls()).toHaveLength(1);
   expect(logger.error).toHaveBeenCalledWith("Failed to store link", {
     link: categorised,
     error: expect.any(Error),

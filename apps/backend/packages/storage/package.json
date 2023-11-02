@@ -7,8 +7,9 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@aws-sdk/lib-dynamodb": "^3.441.0",
     "@total-typescript/shoehorn": "^0.1.1",
-    "@types/aws-lambda": "^8.10.122",
+    "@types/aws-lambda": "^8.10.125",
     "@types/node": "^20.7.0",
     "aws-sdk-client-mock": "^3.0.0",
     "typescript": "^5.2.2",
@@ -16,7 +17,7 @@
     "vitest-config": "workspace:^"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.423.0",
+    "@aws-sdk/client-dynamodb": "^3.441.0",
     "@backend/core": "workspace:^",
     "electrodb": "^2.10.0",
     "logger": "workspace:^",

@@ -19,6 +19,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "winston": "^3.10.0"
+    "winston": "^3.11.0"
   }
 }

@@ -1,6 +1,5 @@
-import { EventBridgeClient } from "@aws-sdk/client-eventbridge";
+import { Events } from "@backend/core/events";
 import { fromPartial } from "@total-typescript/shoehorn";
-import { mockClient } from "aws-sdk-client-mock";
 import { logger } from "logger";
 import { ulid } from "ulid";
 import { handler } from "../src";
@@ -10,12 +9,13 @@ import { responses } from "./fixtures/openai-responses";
 
 vi.mock("logger");
 
-const eventBridgeClientMock = mockClient(EventBridgeClient);
-
-beforeEach(() => {
-  eventBridgeClientMock.reset();
-  eventBridgeClientMock.onAnyCommand().resolves({});
-});
+vi.mock("@backend/core/events", () => ({
+  Events: {
+    Categorised: {
+      publish: vi.fn(),
+    },
+  },
+}));
 
 test("should analyse link and emit event to store", async () => {
   const id = ulid();
@@ -69,17 +69,7 @@ test("should analyse link and emit event to store", async () => {
     "Categorised link",
     categorisedLinkEventBody,
   );
-
-  const emittedEvent = eventBridgeClientMock.call(0).firstArg.input.Entries[0];
-  // could type this properly...
-  const emittedEventBody = JSON.parse(emittedEvent.Detail as string);
-
-  expect(emittedEvent).toEqual({
-    Detail: expect.any(String),
-    DetailType: "link.categorised",
-    EventBusName: expect.any(String),
-    Source: expect.any(String),
-  });
-
-  expect(emittedEventBody.properties).toEqual(categorisedLinkEventBody);
+  expect(Events.Categorised.publish).toHaveBeenCalledWith(
+    categorisedLinkEventBody,
+  );
 });

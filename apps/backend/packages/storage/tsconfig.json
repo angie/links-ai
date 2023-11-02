@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "paths": {
       "@backend/core/*": ["../core/src/*"]
-    }
+    },
+    "target": "ES2017"
   }
 }

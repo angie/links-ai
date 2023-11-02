@@ -21,13 +21,13 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/node": "^20.8.0",
-    "aws-cdk-lib": "2.95.1",
+    "@types/node": "^20.8.10",
+    "aws-cdk-lib": "2.101.1",
     "constructs": "10.2.69",
     "eslint-config-custom": "workspace:^",
     "eslint-import-resolver-alias": "^1.1.2",
     "logger": "workspace:^",
-    "sst": "^2.26.5",
+    "sst": "^2.33.2",
     "tsconfig": "workspace:^",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6",

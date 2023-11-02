@@ -1,14 +1,15 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb"; // ES6 import
 import type { EntityConfiguration } from "electrodb";
 import { Entity } from "electrodb";
 import { Table } from "sst/node/table";
 
 const client = new DynamoDBClient({});
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
 const config: EntityConfiguration = {
-  /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access -- wild stuff with sst types */
-  // @ts-expect-error -- for some reason this is not being picked up from sst types
   table: Table["app-table"].tableName,
-  client,
+  client: ddbDocClient,
 };
 
 export const links = new Entity(
