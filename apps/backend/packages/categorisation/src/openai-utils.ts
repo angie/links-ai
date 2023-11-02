@@ -14,7 +14,7 @@ interface PromptInputs {
   url: string;
 }
 
-export interface PromptResponse {
+interface PromptResponse {
   summary: string;
   categories: string[];
 }
