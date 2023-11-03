@@ -1,18 +1,13 @@
-"use client";
-
-import { useSession, signOut } from "next-auth/react";
-import { Button } from "@ui/components/button";
+import { getEnvVar } from "get-env";
+import { redirect } from "next/navigation";
 import { Landing } from "../components/landing";
+import { auth } from "./auth-helper";
 
-export default function Page(): JSX.Element {
-  const { status } = useSession();
+export default async function Page(): Promise<JSX.Element> {
+  const session = await auth();
 
-  if (status === "authenticated") {
-    return (
-      <main>
-        <Button onClick={() => void signOut()}>Sign out</Button>
-      </main>
-    );
+  if (session) {
+    redirect(getEnvVar("NEXT_PUBLIC_AUTHENTICATED_APP_URL"));
   }
 
   return <Landing />;
