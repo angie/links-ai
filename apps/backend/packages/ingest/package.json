@@ -10,7 +10,7 @@
     "@aws-sdk/client-eventbridge": "^3.441.0",
     "@total-typescript/shoehorn": "^0.1.1",
     "@types/aws-lambda": "^8.10.125",
-    "@types/node": "^20.7.0",
+    "@types/node": "^20.8.10",
     "aws-sdk-client-mock": "^3.0.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6",
