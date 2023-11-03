@@ -10,7 +10,7 @@ export default function Page(): JSX.Element {
   if (status === "authenticated") {
     return (
       <main>
-        <Button onClick={() => signOut()}>Sign out</Button>
+        <Button onClick={() => void signOut()}>Sign out</Button>
       </main>
     );
   }

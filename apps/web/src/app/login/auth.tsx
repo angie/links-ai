@@ -16,7 +16,7 @@ export function Auth(): JSX.Element {
         </div>
         <div className="grid gap-6 text-center">
           <Button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => void signIn("google", { callbackUrl: "/" })}
             type="button"
             variant="outline"
           >
