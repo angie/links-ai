@@ -33,7 +33,7 @@ importers:
         version: 1.10.16
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
 
   apps/backend:
     devDependencies:
@@ -66,7 +66,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
       vitest-config:
         specifier: workspace:^
         version: link:../../packages/vitest-config
@@ -195,7 +195,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
       vitest-config:
         specifier: workspace:^
         version: link:../../../../packages/vitest-config
@@ -235,7 +235,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
       vitest-config:
         specifier: workspace:^
         version: link:../../../../packages/vitest-config
@@ -287,7 +287,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
       vitest-config:
         specifier: workspace:^
         version: link:../../../../packages/vitest-config
@@ -590,7 +590,7 @@ importers:
     dependencies:
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        version: 0.34.6(playwright@1.38.1)
 
 packages:
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -7263,6 +7263,7 @@ packages:
         integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==,
       }
     engines: { node: ">= 10" }
+    dev: true
 
   /@tootallnate/quickjs-emscripten@0.23.0:
     resolution:
@@ -8018,6 +8019,7 @@ packages:
       {
         integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==,
       }
+    dev: true
 
   /abort-controller@3.0.0:
     resolution:
@@ -8090,6 +8092,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /agent-base@7.1.0:
     resolution:
@@ -9839,6 +9842,7 @@ packages:
     engines: { node: ">=14" }
     dependencies:
       rrweb-cssom: 0.6.0
+    dev: true
 
   /csstype@3.1.2:
     resolution:
@@ -9879,6 +9883,7 @@ packages:
       abab: 2.0.6
       whatwg-mimetype: 3.0.0
       whatwg-url: 12.0.1
+    dev: true
 
   /debounce-fn@4.0.0:
     resolution:
@@ -9935,6 +9940,7 @@ packages:
       {
         integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==,
       }
+    dev: true
 
   /deep-eql@4.1.3:
     resolution:
@@ -10259,6 +10265,7 @@ packages:
     engines: { node: ">=12" }
     dependencies:
       webidl-conversions: 7.0.0
+    dev: true
 
   /domhandler@5.0.3:
     resolution:
@@ -12424,6 +12431,7 @@ packages:
     engines: { node: ">=12" }
     dependencies:
       whatwg-encoding: 2.0.0
+    dev: true
 
   /html-to-text@9.0.5:
     resolution:
@@ -12476,6 +12484,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /http-proxy-agent@7.0.0:
     resolution:
@@ -12501,6 +12510,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /https-proxy-agent@7.0.2:
     resolution:
@@ -12566,6 +12576,7 @@ packages:
     engines: { node: ">=0.10.0" }
     dependencies:
       safer-buffer: 2.1.2
+    dev: true
 
   /identity-function@1.0.0:
     resolution:
@@ -13139,6 +13150,7 @@ packages:
       {
         integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==,
       }
+    dev: true
 
   /is-regex@1.1.4:
     resolution:
@@ -13478,6 +13490,7 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: true
 
   /jsesc@0.5.0:
     resolution:
@@ -14773,6 +14786,7 @@ packages:
       {
         integrity: sha512-ub5E4+FBPKwAZx0UwIQOjYWGHTEq5sPqHQNRN8Z9e4A7u3Tj1weLJsL59yH9vmvqEtBHaOmT6cYQKIZOxp35FQ==,
       }
+    dev: true
 
   /oauth@0.9.15:
     resolution:
@@ -15328,6 +15342,7 @@ packages:
       }
     dependencies:
       entities: 4.5.0
+    dev: true
 
   /parseley@0.12.1:
     resolution:
@@ -15551,7 +15566,6 @@ packages:
       playwright-core: 1.38.1
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
 
   /pluralize@8.0.0:
     resolution:
@@ -15856,6 +15870,7 @@ packages:
       {
         integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==,
       }
+    dev: true
 
   /pump@3.0.0:
     resolution:
@@ -15929,6 +15944,7 @@ packages:
       {
         integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==,
       }
+    dev: true
 
   /queue-microtask@1.2.3:
     resolution:
@@ -16315,6 +16331,7 @@ packages:
       {
         integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==,
       }
+    dev: true
 
   /resolve-from@4.0.0:
     resolution:
@@ -16431,6 +16448,7 @@ packages:
       {
         integrity: sha512-APM0Gt1KoXBz0iIkkdB/kfvGOwC4UuJFeG/c+yV7wSc7q96cG/kJ0HiYCnzivD9SB53cLV1MlHFNfOuPaadYSw==,
       }
+    dev: true
 
   /run-applescript@5.0.0:
     resolution:
@@ -16554,6 +16572,7 @@ packages:
     engines: { node: ">=v12.22.7" }
     dependencies:
       xmlchars: 2.2.0
+    dev: true
 
   /scheduler@0.23.0:
     resolution:
@@ -17549,6 +17568,7 @@ packages:
       {
         integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==,
       }
+    dev: true
 
   /synckit@0.8.5:
     resolution:
@@ -17890,6 +17910,7 @@ packages:
       punycode: 2.3.1
       universalify: 0.2.0
       url-parse: 1.5.10
+    dev: true
 
   /tr46@0.0.3:
     resolution:
@@ -17915,6 +17936,7 @@ packages:
     engines: { node: ">=14" }
     dependencies:
       punycode: 2.3.0
+    dev: true
 
   /tree-kill@1.2.2:
     resolution:
@@ -18385,6 +18407,7 @@ packages:
         integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==,
       }
     engines: { node: ">= 4.0.0" }
+    dev: true
 
   /universalify@2.0.0:
     resolution:
@@ -18470,6 +18493,7 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+    dev: true
 
   /url@0.10.3:
     resolution:
@@ -18759,6 +18783,7 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
 
   /vitest@0.34.6(playwright@1.38.1):
     resolution:
@@ -18827,7 +18852,6 @@ packages:
       - sugarss
       - supports-color
       - terser
-    dev: true
 
   /vlq@0.2.3:
     resolution:
@@ -18844,6 +18868,7 @@ packages:
     engines: { node: ">=14" }
     dependencies:
       xml-name-validator: 4.0.0
+    dev: true
 
   /watchpack@2.4.0:
     resolution:
@@ -18910,6 +18935,7 @@ packages:
         integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==,
       }
     engines: { node: ">=12" }
+    dev: true
 
   /websocket-stream@5.5.2:
     resolution:
@@ -18935,6 +18961,7 @@ packages:
     engines: { node: ">=12" }
     dependencies:
       iconv-lite: 0.6.3
+    dev: true
 
   /whatwg-mimetype@3.0.0:
     resolution:
@@ -18942,6 +18969,7 @@ packages:
         integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==,
       }
     engines: { node: ">=12" }
+    dev: true
 
   /whatwg-url@12.0.1:
     resolution:
@@ -18952,6 +18980,7 @@ packages:
     dependencies:
       tr46: 4.1.1
       webidl-conversions: 7.0.0
+    dev: true
 
   /whatwg-url@5.0.0:
     resolution:
@@ -19210,6 +19239,7 @@ packages:
         integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==,
       }
     engines: { node: ">=12" }
+    dev: true
 
   /xml2js@0.5.0:
     resolution:
@@ -19233,6 +19263,7 @@ packages:
       {
         integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==,
       }
+    dev: true
 
   /xtend@4.0.2:
     resolution:

@@ -10,7 +10,7 @@ const ibmPlexMono = IBMPlexMono({
 });
 
 export const metadata: Metadata = {
-  title: "savelinks.ai",
+  title: "savelink.ai",
   description: "The smart way to save, organize, and share links with anyone.",
 };
 
