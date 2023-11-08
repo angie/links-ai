@@ -1,9 +1,10 @@
 "use client";
 
-import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ModeToggle } from "@ui/components/dark-light-mode-toggle";
+import { Fragment } from "react";
+import { ExternalLinkIcon } from "@radix-ui/react-icons";
 
 const user = {
   name: "Tom Cook",
@@ -11,7 +12,6 @@ const user = {
   imageUrl:
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = [{ name: "Dashboard", href: "#", current: true }];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
@@ -32,33 +32,8 @@ export default function Example(): JSX.Element {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <img
-                      alt="Your Company"
-                      className="block h-8 w-auto lg:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    />
-                    <img
-                      alt="Your Company"
-                      className="hidden h-8 w-auto lg:block"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    />
-                  </div>
-                  <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                    {navigation.map((item) => (
-                      <a
-                        aria-current={item.current ? "page" : undefined}
-                        className={classNames(
-                          item.current
-                            ? "border-slate-500 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                          "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
-                        )}
-                        href={item.href}
-                        key={item.name}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    <ExternalLinkIcon className="h-[2rem] w-[2rem] rotate-0 scale-100 transition-all mr-2" />{" "}
+                    <span className="hidden sm:block">savelink.ai</span>
                   </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -121,25 +96,7 @@ export default function Example(): JSX.Element {
             </div>
 
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    aria-current={item.current ? "page" : undefined}
-                    as="a"
-                    className={classNames(
-                      item.current
-                        ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                        : "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800",
-                      "block border-l-4 py-2 pl-3 pr-4 text-base font-medium",
-                    )}
-                    href={item.href}
-                    key={item.name}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-              <div className="border-t border-gray-200 pb-3 pt-4">
+              <div className="border-t pb-3 pt-4">
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
                     <img
@@ -156,14 +113,6 @@ export default function Example(): JSX.Element {
                       {user.email}
                     </div>
                   </div>
-                  <button
-                    className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    type="button"
-                  >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon aria-hidden="true" className="h-6 w-6" />
-                  </button>
                 </div>
                 <div className="mt-3 space-y-1">
                   {userNavigation.map((item) => (
