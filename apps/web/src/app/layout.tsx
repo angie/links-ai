@@ -1,8 +1,9 @@
+import "@ui/styles/globals.css";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono as IBMPlexMono } from "next/font/google";
+import { AppShell } from "../components/app-shell";
 import { NextAuthProvider } from "../providers/auth";
 import { ThemeProvider } from "../providers/theme";
-import "@ui/styles/globals.css";
 
 const ibmPlexMono = IBMPlexMono({
   subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <NextAuthProvider>{children}</NextAuthProvider>
+          <NextAuthProvider>
+            <AppShell>{children}</AppShell>
+          </NextAuthProvider>
         </ThemeProvider>
       </body>
     </html>
