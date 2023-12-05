@@ -10,7 +10,7 @@
     "@total-typescript/shoehorn": "^0.1.1",
     "@types/aws-lambda": "^8.10.125",
     "@types/html-to-text": "^9.0.2",
-    "@types/node": "^20.7.0",
+    "@types/node": "^20.10.3",
     "playwright": "^1.38.1",
     "sst": "^2.26.5",
     "typescript": "^5.2.2",
